@@ -14,7 +14,7 @@ function sendFile(res, file, status = 200) {
   fs.readFile(file, (err, data) => {
     if (err) {
       res.writeHead(500, {'Content-Type':'text/plain; charset=utf-8'});
-      return res.end('Erreur serveur');
+      return res.end('Server error');
     }
     const ext = path.extname(file).toLowerCase();
     const headers = {
@@ -35,15 +35,16 @@ const server = http.createServer((req, res) => {
   try { urlPath = decodeURIComponent(new URL(req.url, 'http://localhost').pathname); }
   catch { urlPath = '/'; }
 
-  if (urlPath === '/') return sendFile(res, path.join(root, 'index.html'));
-
-  const safePath = path.normalize(urlPath).replace(/^(\.\.(\/|\\|$))+/, '');
-  const file = path.join(root, safePath);
+  const clean = path.normalize(urlPath).replace(/^([.][.](\/|\\|$))+/, '');
+  let file = path.join(root, clean);
   if (!file.startsWith(root)) return sendFile(res, path.join(root, '404.html'), 404);
 
   fs.stat(file, (err, stat) => {
-    if (!err && stat.isFile()) return sendFile(res, file);
-    return sendFile(res, path.join(root, '404.html'), 404);
+    if (!err && stat.isDirectory()) file = path.join(file, 'index.html');
+    fs.stat(file, (err2, stat2) => {
+      if (!err2 && stat2.isFile()) return sendFile(res, file);
+      return sendFile(res, path.join(root, '404.html'), 404);
+    });
   });
 });
 

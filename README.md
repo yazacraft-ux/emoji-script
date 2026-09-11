@@ -1,19 +1,32 @@
 # Emoji Script
 
-Site statique prêt à déployer sur Railway, GitHub Pages, Netlify, Vercel ou Cloudflare Pages.
+Version finale bilingue FR / EN prête pour GitHub Pages.
 
-## Déploiement
+## URLs
 
-Aucun build n'est nécessaire. Sur Railway, le script `npm start` lance le serveur Node inclus. Sur GitHub Pages, les fichiers statiques fonctionnent directement.
+- Français : `https://emoji-script.com/`
+- English : `https://emoji-script.com/en/`
 
-Fichiers principaux :
-- `index.html` — site + playground
-- `app.js` — compilateur/interpréteur côté navigateur
-- `styles.css` — design responsive
-- `404.html` — page 404
-- `og-image.png` — image de partage 1200×630
-- `favicon.svg` + icônes PWA
-- `robots.txt` + `sitemap.xml` — SEO
-- `server.js` + `package.json` — déploiement Railway sans dépendance
+## SEO inclus
 
-Le code Emoji Script est traduit en JavaScript et exécuté dans un Web Worker avec un timeout de 2 secondes.
+- Title + meta description dédiés FR / EN
+- canonical + `hreflang` FR / EN / x-default
+- Open Graph et Twitter Cards dédiés par langue
+- `og-image-fr.png` et `og-image-en.png` en 1200×630
+- données structurées Schema.org (`WebSite` + `SoftwareApplication`)
+- `sitemap.xml` bilingue avec alternates hreflang
+- `robots.txt`
+- `CNAME` pour `emoji-script.com`
+- `.nojekyll` pour GitHub Pages
+- page 404 bilingue
+
+## Fichiers principaux
+
+- `index.html` : version française
+- `en/index.html` : version anglaise
+- `app.js` : compilateur + messages localisés FR / EN
+- `styles.css` : design responsive partagé
+- `404.html` : page 404 bilingue
+- `og-image-fr.png` / `og-image-en.png` : images sociales
+
+Aucun build n'est nécessaire sur GitHub Pages. Publie la branche `main` depuis `/ (root)`.

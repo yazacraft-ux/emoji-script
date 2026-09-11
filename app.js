@@ -5,8 +5,26 @@ const runStatus = document.getElementById('runStatus');
 const copyBtn = document.getElementById('copyBtn');
 const clearBtn = document.getElementById('clearBtn');
 const clearOutputBtn = document.getElementById('clearOutputBtn');
+const isEnglish = document.documentElement.lang.toLowerCase().startsWith('en');
 
-const examples = {
+const i18n = isEnglish ? {
+  copied:'Copied ✓', copy:'Copy', running:'running…', error:'error', done:'done', timeout:'timeout', ready:'ready',
+  empty:'Script finished with no output.', cleared:'// Output cleared.',
+  timeoutText:'Execution stopped after 2 seconds (loop running too long?).', unknown:'Unknown error.',
+  unclosed:'Unclosed string: add 🤫 at the end of your text.', forbidden:'Forbidden identifier', symbol:'Unknown symbol near'
+} : {
+  copied:'Copié ✓', copy:'Copier', running:'exécution…', error:'erreur', done:'terminé', timeout:'timeout', ready:'prêt',
+  empty:'Script terminé sans sortie.', cleared:'// Sortie vidée.',
+  timeoutText:'Exécution stoppée après 2 secondes (boucle trop longue ?).', unknown:'Erreur inconnue.',
+  unclosed:'Texte non fermé : ajoute 🤫 à la fin de ta chaîne.', forbidden:'Identifiant interdit', symbol:'Symbole inconnu près de'
+};
+
+const examples = isEnglish ? {
+  hello: `🗣️🌜💬Hello, world! 👋🤫🌛🙏`,
+  condition: `age➡️1️⃣8️⃣🙏\n🤔🌜age💪1️⃣7️⃣🌛👉🔓\n  🗣️🌜💬Access granted ✅🤫🌛🙏\n🔒🙃👉🔓\n  🗣️🌜💬Access denied ❌🤫🌛🙏\n🔒`,
+  loop: `i➡️1️⃣🙏\n🔁🌜i🤏6️⃣🌛👉🔓\n  🗣️🌜i🌛🙏\n  i➡️i➕1️⃣🙏\n🔒`,
+  length: `message➡️💬Emoji Script 🤯🤫🙏\n🗣️🌜📏🌜message🌛🌛🙏`
+} : {
   hello: `🗣️🌜💬Hello, world! 👋🤫🌛🙏`,
   condition: `age➡️1️⃣8️⃣🙏\n🤔🌜age💪1️⃣7️⃣🌛👉🔓\n  🗣️🌜💬Accès autorisé ✅🤫🌛🙏\n🔒🙃👉🔓\n  🗣️🌜💬Accès refusé ❌🤫🌛🙏\n🔒`,
   loop: `i➡️1️⃣🙏\n🔁🌜i🤏6️⃣🌛👉🔓\n  🗣️🌜i🌛🙏\n  i➡️i➕1️⃣🙏\n🔒`,
@@ -37,7 +55,7 @@ function compileEmoji(source) {
 
     if (source.startsWith('💬', i)) {
       const end = source.indexOf('🤫', i + '💬'.length);
-      if (end === -1) throw new Error('Texte non fermé : ajoute 🤫 à la fin de ta chaîne.');
+      if (end === -1) throw new Error(i18n.unclosed);
       const content = source.slice(i + '💬'.length, end);
       js += JSON.stringify(content);
       i = end + '🤫'.length;
@@ -59,13 +77,13 @@ function compileEmoji(source) {
     const identifier = rest.match(/^[A-Za-z_][A-Za-z0-9_]*/);
     if (identifier) {
       const word = identifier[0];
-      if (blockedIdentifiers.has(word)) throw new Error(`Identifiant interdit : ${word}`);
+      if (blockedIdentifiers.has(word)) throw new Error(`${i18n.forbidden} : ${word}`);
       js += word;
       i += word.length;
       continue;
     }
 
-    throw new Error(`Symbole inconnu près de « ${source.slice(i, i + 8)} »`);
+    throw new Error(`${i18n.symbol} « ${source.slice(i, i + 8)} »`);
   }
   return js;
 }
@@ -86,7 +104,7 @@ function appendLine(text, type='normal') {
 
 function runCode() {
   output.innerHTML = '';
-  setStatus('exécution…', 'running');
+  setStatus(i18n.running, 'running');
   runBtn.disabled = true;
 
   let compiled;
@@ -94,13 +112,12 @@ function runCode() {
     compiled = compileEmoji(codeInput.value);
   } catch (err) {
     appendLine(err.message, 'error');
-    setStatus('erreur', 'error');
+    setStatus(i18n.error, 'error');
     runBtn.disabled = false;
     return;
   }
 
   const workerSource = `
-    const blocked = undefined;
     const print = (...args) => postMessage({type:'out', value: args.map(v => typeof v === 'object' ? JSON.stringify(v) : String(v)).join(' ')});
     const len = (value) => value != null && typeof value.length === 'number' ? value.length : 0;
     try {
@@ -125,8 +142,8 @@ function runCode() {
   };
 
   const timeout = setTimeout(() => {
-    appendLine('Exécution stoppée après 2 secondes (boucle trop longue ?).', 'error');
-    setStatus('timeout', 'error');
+    appendLine(i18n.timeoutText, 'error');
+    setStatus(i18n.timeout, 'error');
     stop();
   }, 2000);
 
@@ -135,21 +152,21 @@ function runCode() {
     if (data.type === 'out') appendLine(data.value);
     if (data.type === 'error') {
       appendLine(data.value, 'error');
-      setStatus('erreur', 'error');
+      setStatus(i18n.error, 'error');
       clearTimeout(timeout);
       stop();
     }
     if (data.type === 'done') {
-      if (!output.children.length) appendLine('Script terminé sans sortie.');
-      setStatus('terminé', 'success');
+      if (!output.children.length) appendLine(i18n.empty);
+      setStatus(i18n.done, 'success');
       clearTimeout(timeout);
       stop();
     }
   };
 
   worker.onerror = (event) => {
-    appendLine(event.message || 'Erreur inconnue.', 'error');
-    setStatus('erreur', 'error');
+    appendLine(event.message || i18n.unknown, 'error');
+    setStatus(i18n.error, 'error');
     clearTimeout(timeout);
     stop();
   };
@@ -171,8 +188,8 @@ codeInput.addEventListener('keydown', (event) => {
 copyBtn.addEventListener('click', async () => {
   try {
     await navigator.clipboard.writeText(codeInput.value);
-    copyBtn.textContent = 'Copié ✓';
-    setTimeout(() => copyBtn.textContent = 'Copier', 1200);
+    copyBtn.textContent = i18n.copied;
+    setTimeout(() => copyBtn.textContent = i18n.copy, 1200);
   } catch {
     codeInput.select();
     document.execCommand('copy');
@@ -185,8 +202,8 @@ clearBtn.addEventListener('click', () => {
 });
 
 clearOutputBtn.addEventListener('click', () => {
-  output.innerHTML = '<span class="muted">// Sortie vidée.</span>';
-  setStatus('prêt');
+  output.innerHTML = `<span class="muted">${i18n.cleared}</span>`;
+  setStatus(i18n.ready);
 });
 
 document.querySelectorAll('[data-example]').forEach(btn => {
