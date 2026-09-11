@@ -1,0 +1,12 @@
+{
+  "name": "emoji-script",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Emoji Script — mini langage de programmation en emojis",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

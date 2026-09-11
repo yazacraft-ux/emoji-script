@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Emoji Script — Le langage de programmation en emojis</title>
+  <meta name="description" content="Écris et exécute du code avec des emojis. Emoji Script est un mini langage de programmation fun, gratuit et directement utilisable dans ton navigateur.">
+  <meta name="theme-color" content="#0b0b10">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://emoji-script.com/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Emoji Script — Code avec des emojis 🤯">
+  <meta property="og:description" content="Un mini langage de programmation où 🔁, 🤔, 🗣️ et 💯 remplacent le code classique. Teste-le gratuitement.">
+  <meta property="og:url" content="https://emoji-script.com/">
+  <meta property="og:image" content="https://emoji-script.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Emoji Script — le langage de programmation en emojis">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Emoji Script — Code avec des emojis 🤯">
+  <meta name="twitter:description" content="Écris du code avec des emojis et lance-le directement dans ton navigateur.">
+  <meta name="twitter:image" content="https://emoji-script.com/og-image.png">
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Emoji Script",
+    "url":"https://emoji-script.com/",
+    "applicationCategory":"DeveloperApplication",
+    "operatingSystem":"Web",
+    "description":"Mini langage de programmation basé sur des emojis, exécutable directement dans le navigateur.",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}
+  }
+  </script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Emoji Script — Accueil">
+      <span class="brand-mark" aria-hidden="true">🤯</span>
+      <span>Emoji<span>Script</span></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Navigation principale">
+      <a href="#compiler">Compilateur</a>
+      <a href="#documentation">Documentation</a>
+      <a href="#examples">Exemples</a>
+    </nav>
+    <a class="header-cta" href="#compiler">Coder maintenant <span>→</span></a>
+    <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+    <div class="mobile-menu" hidden>
+      <a href="#compiler">Compilateur</a>
+      <a href="#documentation">Documentation</a>
+      <a href="#examples">Exemples</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="eyebrow"><span class="status-dot"></span> 100 % navigateur · 0 installation</div>
+      <h1 id="hero-title">Le code, mais en <span>emoji.</span></h1>
+      <p class="hero-copy">Un mini langage de programmation absurde, lisible et étonnamment fonctionnel. Écris avec <strong>🤔 🔁 🗣️ 💯</strong>, puis lance ton script instantanément.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#compiler">Tester Emoji Script <span>⚡</span></a>
+        <a class="btn btn-secondary" href="#documentation">Voir la syntaxe</a>
+      </div>
+      <div class="hero-code" aria-label="Exemple Emoji Script">
+        <div class="window-bar"><span></span><span></span><span></span><em>hello.emoji</em></div>
+        <pre><code><b>🤔</b>🌜💯🤝💯🌛👉🔓
+  🗣️🌜💬Hello, world! 👋🤫🌛🙏
+🔒🙃👉🔓
+  🗣️🌜💬Impossible 😵🤫🌛🙏
+🔒</code></pre>
+      </div>
+    </section>
+
+    <section class="compiler-section section-shell" id="compiler" aria-labelledby="compiler-title">
+      <div class="section-heading">
+        <div>
+          <span class="kicker">PLAYGROUND</span>
+          <h2 id="compiler-title">Compilateur Emoji Script</h2>
+        </div>
+        <p>Tout s’exécute localement dans ton navigateur. Aucun code n’est envoyé sur un serveur.</p>
+      </div>
+
+      <div class="playground">
+        <article class="panel editor-panel">
+          <div class="panel-head">
+            <div><span class="panel-icon">✍️</span><strong>Code</strong><small>main.emoji</small></div>
+            <div class="panel-actions">
+              <button type="button" id="copyBtn">Copier</button>
+              <button type="button" id="clearBtn">Effacer</button>
+            </div>
+          </div>
+          <label class="sr-only" for="codeInput">Code Emoji Script</label>
+          <textarea id="codeInput" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="compilerHelp">🗣️🌜💬Salut depuis Emoji Script 👋🤫🌛🙏
+
+score➡️3️⃣🙏
+🤔🌜score💪2️⃣🌛👉🔓
+  🗣️🌜💬Ça fonctionne 🔥🤫🌛🙏
+🔒🙃👉🔓
+  🗣️🌜💬Pas encore...🤫🌛🙏
+🔒</textarea>
+          <div class="editor-footer">
+            <span id="compilerHelp">Astuce : <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Entrée</kbd> pour exécuter</span>
+            <button class="run-btn" type="button" id="runBtn">▶ Exécuter</button>
+          </div>
+        </article>
+
+        <article class="panel output-panel">
+          <div class="panel-head">
+            <div><span class="panel-icon">🖥️</span><strong>Résultat</strong><small id="runStatus">prêt</small></div>
+            <button type="button" id="clearOutputBtn">Vider</button>
+          </div>
+          <div id="output" class="output" role="log" aria-live="polite"><span class="muted">// Le résultat de ton script apparaîtra ici.</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell" id="examples" aria-labelledby="examples-title">
+      <div class="section-heading compact">
+        <div><span class="kicker">EXEMPLES</span><h2 id="examples-title">Un clic, et ça code.</h2></div>
+      </div>
+      <div class="example-grid">
+        <button class="example-card" data-example="hello" type="button"><span>👋</span><strong>Hello World</strong><small>Le classique, version emoji</small></button>
+        <button class="example-card" data-example="condition" type="button"><span>🤔</span><strong>Condition</strong><small>Teste un if / else</small></button>
+        <button class="example-card" data-example="loop" type="button"><span>🔁</span><strong>Boucle</strong><small>Compte de 1 à 5</small></button>
+        <button class="example-card" data-example="length" type="button"><span>📏</span><strong>Longueur</strong><small>Utilise len(...)</small></button>
+      </div>
+    </section>
+
+    <section class="docs section-shell" id="documentation" aria-labelledby="docs-title">
+      <div class="section-heading">
+        <div><span class="kicker">DOCUMENTATION</span><h2 id="docs-title">Tu connais les emojis, tu connais le langage.</h2></div>
+        <p>Chaque instruction se termine par <code>🙏</code>. Les blocs utilisent <code>🔓</code> et <code>🔒</code>.</p>
+      </div>
+
+      <div class="docs-layout">
+        <div class="docs-card">
+          <h3>Syntaxe principale</h3>
+          <div class="token-table" role="table" aria-label="Syntaxe Emoji Script">
+            <div class="token-row"><code>🔓 &nbsp; 🔒</code><span>{ &nbsp; }</span><small>Bloc</small></div>
+            <div class="token-row"><code>📤 &nbsp; 📥</code><span>[ &nbsp; ]</span><small>Liste</small></div>
+            <div class="token-row"><code>🗣️</code><span>print(...)</span><small>Afficher</small></div>
+            <div class="token-row"><code>📏</code><span>len(...)</span><small>Longueur</small></div>
+            <div class="token-row"><code>➕ ➖ ✖️ ➗</code><span>+ − × ÷</span><small>Calcul</small></div>
+            <div class="token-row"><code>➡️ 🤝 🙅</code><span>= == !=</span><small>Comparaison</small></div>
+            <div class="token-row"><code>💪 🤏</code><span>&gt; &lt;</span><small>Comparer</small></div>
+            <div class="token-row"><code>💯 🧢 👻</code><span>True False None</span><small>Valeurs</small></div>
+            <div class="token-row"><code>🔁 🤔 🙃</code><span>while if else</span><small>Logique</small></div>
+            <div class="token-row"><code>💬 &nbsp; 🤫</code><span>" &nbsp; "</span><small>Texte</small></div>
+            <div class="token-row"><code>🌜 &nbsp; 🌛</code><span>( &nbsp; )</span><small>Parenthèses</small></div>
+            <div class="token-row"><code>🔹 👉 🙏</code><span>, : ;</span><small>Séparateurs</small></div>
+            <div class="token-row"><code>0️⃣…9️⃣</code><span>0…9</span><small>Nombres</small></div>
+            <div class="token-row"><code>⏺️</code><span>.</span><small>Décimale</small></div>
+          </div>
+        </div>
+
+        <div class="grammar-stack">
+          <article class="grammar-card">
+            <div class="grammar-title"><span>🔁</span><h3>Boucle while</h3></div>
+            <pre><code>🔁🌜comparaison🌛👉🔓
+  ...
+🔒</code></pre>
+          </article>
+          <article class="grammar-card">
+            <div class="grammar-title"><span>🤔</span><h3>If / Else</h3></div>
+            <pre><code>🤔🌜comparaison🌛👉🔓
+  ...
+🔒🙃👉🔓
+  ...
+🔒</code></pre>
+          </article>
+          <article class="grammar-card note-card">
+            <div class="grammar-title"><span>💡</span><h3>À savoir</h3></div>
+            <p>Les noms de variables restent en lettres classiques. Exemple : <code>score➡️5️⃣🙏</code>.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section section-shell">
+      <div>
+        <span class="kicker">PRÊT ?</span>
+        <h2>Fais buguer ton cerveau,<br><span>pas ton navigateur.</span></h2>
+        <p>Emoji Script est un projet fun et open web. Aucun compte, aucune installation.</p>
+      </div>
+      <a class="btn btn-primary" href="#compiler">Écrire mon premier script 🚀</a>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#top"><span class="brand-mark">🤯</span><span>Emoji<span>Script</span></span></a>
+    <p>Le langage que personne n’a demandé, mais que tout le monde veut tester.</p>
+    <span>© <span id="year"></span> Emoji Script</span>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
