@@ -1,118 +1,347 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Emoji Script Chrome Extension - Code with Emojis</title>
-<meta name="description" content="Install the Emoji Script Chrome extension to open the compiler in one click, copy emoji syntax and quickly access documentation and examples.">
-<meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://emoji-script.com/en/extension-chrome/">
-<link rel="alternate" hreflang="fr" href="https://emoji-script.com/extension-chrome/">
-<link rel="alternate" hreflang="en" href="https://emoji-script.com/en/extension-chrome/">
-<link rel="alternate" hreflang="x-default" href="https://emoji-script.com/extension-chrome/">
-<meta property="og:type" content="website"><meta property="og:site_name" content="Emoji Script">
-<meta property="og:locale" content="en_US">
-<meta property="og:title" content="Emoji Script Chrome Extension - Code with Emojis">
-<meta property="og:description" content="Install the Emoji Script Chrome extension to open the compiler in one click, copy emoji syntax and quickly access documentation and examples.">
-<meta property="og:url" content="https://emoji-script.com/en/extension-chrome/">
-<meta property="og:image" content="https://emoji-script.com/assets/og-extension-en.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Emoji Script Chrome Extension - Code with Emojis">
-<meta name="twitter:description" content="Install the Emoji Script Chrome extension to open the compiler in one click, copy emoji syntax and quickly access documentation and examples."><meta name="twitter:image" content="https://emoji-script.com/assets/og-extension-en.png">
-<meta name="theme-color" content="#06070a"><link rel="icon" href="/favicon.ico">
-<script type="application/ld+json">
-{
-"@context":"https://schema.org","@type":"SoftwareApplication",
-"name":"Emoji Script — Code with Emojis",
-"applicationCategory":"BrowserApplication","operatingSystem":"Chrome",
-"url":"https://emoji-script.com/en/extension-chrome/",
-"downloadUrl":"https://chromewebstore.google.com/detail/jikhhemdcghapficdnjicfekjjiojkon",
-"description":"Install the Emoji Script Chrome extension to open the compiler in one click, copy emoji syntax and quickly access documentation and examples.",
-"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}
-}
-</script>
-<style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Emoji Script Chrome Extension - Code with emojis</title>
+  <meta name="description" content="Discover the official Emoji Script Chrome extension to access the compiler, documentation, examples and syntax in one click.">
+  <meta name="theme-color" content="#05060a">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <link rel="canonical" href="https://emoji-script.com/en/extension-chrome/">
+  <link rel="alternate" hreflang="fr" href="https://emoji-script.com/extension-chrome/">
+  <link rel="alternate" hreflang="en" href="https://emoji-script.com/en/extension-chrome/">
+  <link rel="alternate" hreflang="x-default" href="https://emoji-script.com/extension-chrome/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Emoji Script">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Emoji Script Chrome Extension - Code with emojis">
+  <meta property="og:description" content="Discover the official Emoji Script Chrome extension to access the compiler, documentation, examples and syntax in one click.">
+  <meta property="og:url" content="https://emoji-script.com/en/extension-chrome/">
+  <meta property="og:image" content="https://emoji-script.com/assets/og-extension-en.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Emoji Script Chrome Extension - Code with emojis">
+  <meta name="twitter:description" content="Discover the official Emoji Script Chrome extension to access the compiler, documentation, examples and syntax in one click.">
+  <meta name="twitter:image" content="https://emoji-script.com/assets/og-extension-en.png">
+  <style>
 :root{
-  --bg:#06070a;--panel:#0e1117;--panel2:#12161e;--text:#f7f7f8;--muted:#a8adb8;
-  --line:#242a34;--yellow:#ffd12f;--yellow2:#ffbd1d;--green:#50e3a4;
+  --bg:#05060a; --panel:#0d1016; --panel-2:#121521; --line:#202632;
+  --text:#f4f5f7; --muted:#a7acb8; --yellow:#ffd12f; --yellow-2:#f5be1d;
+  --shadow:0 26px 70px rgba(0,0,0,.35);
 }
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:
-radial-gradient(circle at 55% -12%,rgba(255,209,47,.11),transparent 26rem),
-radial-gradient(circle at 93% 12%,rgba(85,59,218,.16),transparent 29rem),var(--bg);
-color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-a{color:inherit;text-decoration:none}.wrap{width:min(1180px,calc(100% - 40px));margin:auto}
-.nav{position:sticky;top:0;z-index:20;background:rgba(6,7,10,.86);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)}
-.navin{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.04em}
-.logo{width:34px;height:34px;border-radius:10px;background:var(--yellow);color:#111;display:grid;place-items:center;font-weight:950}
-.links{display:flex;align-items:center;gap:24px;color:#c8ccd3;font-size:14px}
-.links a:hover{color:#fff}.lang{border:1px solid var(--line);padding:9px 10px;border-radius:10px;background:#10141b}
-.navcta{background:#fff;color:#111;padding:11px 15px;border-radius:11px;font-weight:850}
-.hero{padding:84px 0 58px}.heroGrid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
-.badge{display:inline-flex;align-items:center;gap:9px;padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:#0e1219;color:#e8e9ed;font-size:13px;font-weight:800}
-.badge i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green)}
-h1{font-size:clamp(48px,7vw,82px);line-height:.99;letter-spacing:-.067em;margin:24px 0 22px;max-width:760px}
-h1 span{color:var(--yellow)}.lead{color:var(--muted);font-size:19px;line-height:1.7;max-width:700px}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 20px;border-radius:13px;font-weight:900;border:1px solid transparent;transition:.2s}.btn:hover{transform:translateY(-2px)}
-.primary{background:linear-gradient(180deg,var(--yellow),var(--yellow2));color:#111;box-shadow:0 14px 35px rgba(255,209,47,.16)}.secondary{background:#11151c;border-color:var(--line)}
-.rating{display:flex;align-items:center;gap:10px;color:#c8ccd3;margin-top:21px;font-size:13px}.stars{color:var(--yellow);letter-spacing:2px}
-.mock{background:linear-gradient(180deg,#0e1117,#090b0f);border:1px solid #29303a;border-radius:24px;padding:18px;box-shadow:0 30px 90px rgba(0,0,0,.42)}
-.mock img{width:100%;display:block;border-radius:16px}
-.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}.pill{padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:#0e1218;color:#c8ccd4;font-size:12px}
-section{padding:78px 0}.kicker{color:var(--yellow);font-size:12px;font-weight:950;letter-spacing:.16em;text-transform:uppercase;margin-bottom:11px}
-.sectionHead{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:34px}
-h2{font-size:clamp(36px,5vw,60px);line-height:1;letter-spacing:-.055em;margin:0;max-width:760px}.sectionText{max-width:430px;color:var(--muted);line-height:1.7}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:linear-gradient(180deg,#11151c,#0c0f14);border:1px solid var(--line);border-radius:18px;padding:23px}
-.ico{width:42px;height:42px;border-radius:12px;background:#181d26;display:grid;place-items:center;font-size:22px;margin-bottom:22px}.card h3{font-size:18px;margin:0 0 8px}.card p{color:var(--muted);line-height:1.6;margin:0;font-size:14px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:step}.step{background:#0f1319;border:1px solid var(--line);border-radius:18px;padding:25px}
-.step:before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:36px;height:36px;background:var(--yellow);color:#111;border-radius:50%;font-weight:950;margin-bottom:20px}.step h3{margin:0 0 8px}.step p{margin:0;color:var(--muted);line-height:1.6}
-.faqgrid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}.faq{display:grid;gap:10px}details{background:#0f1319;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
-summary{cursor:pointer;font-weight:800}details p{color:var(--muted);line-height:1.65;margin:13px 0 2px}.side{background:#11151c;border:1px solid var(--line);border-radius:18px;padding:28px}
-.side h3{font-size:24px;margin:0 0 10px}.side p{color:var(--muted);line-height:1.65}
-.cta{margin:32px auto 86px;padding:42px;border:1px solid #332f23;border-radius:26px;background:radial-gradient(circle at 80% 20%,rgba(255,209,47,.18),transparent 24rem),linear-gradient(135deg,#11151c,#17150e);display:flex;align-items:center;justify-content:space-between;gap:30px}.cta p{color:var(--muted);line-height:1.65;max-width:600px}
-footer{border-top:1px solid var(--line);padding:28px 0 40px;color:#8f96a3;font-size:13px}.foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-@media(max-width:920px){.links a:not(.lang):not(.navcta){display:none}.heroGrid{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}.faqgrid{grid-template-columns:1fr}.sectionHead,.cta{align-items:flex-start;flex-direction:column}}
-@media(max-width:600px){.wrap{width:min(100% - 24px,1180px)}.navin{height:64px}.navcta{display:none}.hero{padding-top:52px}.cards,.steps{grid-template-columns:1fr}h1{font-size:49px}.lead{font-size:17px}.actions .btn{width:100%}.cta{padding:28px 22px}}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 26% 0%, rgba(255,209,47,.12), transparent 35rem),
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
+    #05060a;
+  background-size:auto, 56px 56px, 56px 56px, auto;
+  background-position:center top, center top, center top, center top;
+}
+a{text-decoration:none;color:inherit}
+.wrap{width:min(1320px, calc(100% - 48px)); margin-inline:auto}
+.site-header{
+  position:sticky; top:0; z-index:30;
+  background:rgba(5,6,10,.82); backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.header-inner{
+  min-height:96px; display:flex; align-items:center; gap:22px;
+}
+.brand{
+  display:flex; align-items:center; gap:16px; font-weight:900; letter-spacing:-.04em;
+  font-size:23px; flex-shrink:0;
+}
+.brand-mark{
+  width:46px; height:46px; border-radius:14px; display:grid; place-items:center;
+  background:var(--yellow); color:#111; font-size:25px; font-weight:900;
+  box-shadow:0 10px 24px rgba(255,209,47,.18);
+}
+.brand span b{color:var(--yellow)}
+.desktop-nav{display:flex; align-items:center; gap:42px; margin-left:auto}
+.desktop-nav a{
+  color:#d4d7df; font-size:18px; font-weight:600;
+}
+.desktop-nav a:hover{color:#fff}
+.nav-actions{display:flex; align-items:center; gap:14px}
+.small-pill, .header-cta, .header-secondary{
+  border-radius:18px; font-weight:800; transition:.2s ease;
+}
+.small-pill{
+  border:1px solid rgba(255,255,255,.1);
+  background:#0e1320; color:#eceef3; padding:14px 18px; font-size:17px;
+}
+.header-secondary{
+  border:1px solid rgba(255,255,255,.1);
+  background:#10141f; color:#eceef3; padding:14px 20px; font-size:17px;
+}
+.header-cta{
+  background:#fff; color:#111; padding:15px 26px; font-size:17px;
+}
+.header-secondary:hover,.small-pill:hover,.header-cta:hover{transform:translateY(-1px)}
+
+.hero{padding:76px 0 46px}
+.hero-grid{
+  display:grid; grid-template-columns:1.02fr .98fr; gap:44px; align-items:center;
+}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:10px; border:1px solid rgba(255,255,255,.08);
+  padding:12px 18px; border-radius:999px; background:rgba(13,16,22,.76);
+  color:#eef2f6; font-weight:800; font-size:16px;
+}
+.dot{width:10px; height:10px; border-radius:50%; background:#54f0af; box-shadow:0 0 16px #54f0af}
+h1{
+  margin:26px 0 22px; font-size:clamp(60px, 8vw, 112px); line-height:.92; letter-spacing:-.07em;
+}
+h1 span{color:var(--yellow)}
+.hero-copy{
+  max-width:720px; color:var(--muted); font-size:23px; line-height:1.62;
+}
+.hero-actions{display:flex; gap:18px; flex-wrap:wrap; margin-top:34px}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  border-radius:20px; padding:18px 28px; font-weight:900; font-size:22px;
+  border:1px solid transparent; transition:.2s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:linear-gradient(180deg,var(--yellow),var(--yellow-2)); color:#111; box-shadow:0 18px 36px rgba(255,209,47,.17)}
+.btn-secondary{background:#101520; border-color:#232a36; color:#eef2f7}
+.rating{
+  margin-top:24px; display:flex; align-items:center; gap:16px; color:#cfd4de; font-size:17px;
+}
+.stars{color:var(--yellow); letter-spacing:4px; font-size:24px}
+.hero-card{
+  padding:18px; border:1px solid #242c37; border-radius:34px; background:linear-gradient(180deg,#10131a,#090b11);
+  box-shadow:var(--shadow);
+}
+.hero-card img{width:100%; display:block; border-radius:24px}
+.hero-pills{
+  display:flex; flex-wrap:wrap; gap:14px; margin-top:18px;
+}
+.hero-pills span{
+  border:1px solid #242b37; background:#0d121b; border-radius:999px; padding:12px 18px;
+  color:#d3d8e2; font-size:16px;
+}
+
+.section-shell{padding:54px 0}
+.section-heading{
+  display:flex; justify-content:space-between; align-items:flex-end; gap:36px; margin-bottom:26px;
+}
+.kicker{
+  color:var(--yellow); font-size:15px; font-weight:900; letter-spacing:.16em; text-transform:uppercase;
+}
+h2{
+  margin:8px 0 0; font-size:clamp(42px, 5.3vw, 76px); line-height:.98; letter-spacing:-.06em;
+}
+.section-heading p{
+  max-width:500px; color:var(--muted); font-size:20px; line-height:1.6;
+}
+.feature-grid, .steps-grid{
+  display:grid; gap:18px;
+}
+.feature-grid{grid-template-columns:repeat(4,1fr)}
+.steps-grid{grid-template-columns:repeat(3,1fr)}
+.card, .step-card, .cta-box{
+  border:1px solid #232a36; border-radius:28px; background:linear-gradient(180deg,#10131a,#0b0e14);
+  box-shadow:var(--shadow);
+}
+.card{padding:26px}
+.card .icon{
+  width:56px; height:56px; border-radius:16px; display:grid; place-items:center;
+  background:#161b26; margin-bottom:20px; font-size:28px;
+}
+.card h3, .step-card h3{margin:0 0 8px; font-size:28px; letter-spacing:-.03em}
+.card p, .step-card p, .faq-answer{margin:0; color:var(--muted); font-size:18px; line-height:1.6}
+.step-card{padding:26px}
+.step-number{
+  width:56px; height:56px; border-radius:50%; display:grid; place-items:center;
+  background:var(--yellow); color:#111; font-size:28px; font-weight:900; margin-bottom:18px;
+}
+.faq-grid{
+  display:grid; grid-template-columns:1.18fr .82fr; gap:18px;
+}
+.faq-list{display:grid; gap:14px}
+details{
+  border:1px solid #232a36; border-radius:22px; background:linear-gradient(180deg,#10131a,#0b0e14);
+  padding:22px 24px;
+}
+summary{
+  cursor:pointer; list-style:none; font-size:22px; font-weight:800;
+}
+summary::-webkit-details-marker{display:none}
+.faq-answer{padding-top:12px}
+.side-box{
+  border:1px solid #232a36; border-radius:28px; background:linear-gradient(180deg,#10131a,#0b0e14);
+  padding:28px;
+}
+.side-box h3{margin:0 0 10px; font-size:34px; line-height:1.05; letter-spacing:-.04em}
+.side-box p{margin:0 0 18px; color:var(--muted); font-size:18px; line-height:1.65}
+.cta-box{
+  display:flex; justify-content:space-between; align-items:center; gap:32px;
+  padding:38px; margin:26px 0 90px;
+  background:
+    radial-gradient(circle at 78% 20%, rgba(255,209,47,.15), transparent 28rem),
+    linear-gradient(180deg,#10131a,#0b0e14);
+}
+.cta-box h2{font-size:clamp(40px,4.8vw,64px)}
+.cta-box p{max-width:680px; color:var(--muted); font-size:20px; line-height:1.65}
+.site-footer{
+  border-top:1px solid rgba(255,255,255,.08); padding:30px 0 44px; color:#aeb4c0;
+}
+.footer-inner{
+  display:flex; justify-content:space-between; align-items:center; gap:18px; flex-wrap:wrap;
+}
+.footer-text{font-size:15px}
+.mobile-menu-toggle{display:none}
+@media (max-width: 1160px){
+  .desktop-nav{gap:24px}
+  .feature-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-grid, .faq-grid{grid-template-columns:1fr}
+}
+@media (max-width: 860px){
+  .header-inner{min-height:78px}
+  .desktop-nav{display:none}
+  .nav-actions .header-secondary{display:none}
+  .hero{padding-top:46px}
+  .btn{font-size:18px; padding:16px 22px}
+  .hero-copy{font-size:18px}
+  .section-heading{align-items:flex-start; flex-direction:column}
+  .steps-grid, .feature-grid{grid-template-columns:1fr}
+  .cta-box{flex-direction:column; align-items:flex-start}
+}
+@media (max-width: 560px){
+  .wrap{width:min(100% - 24px, 1320px)}
+  .brand{font-size:18px}
+  .brand-mark{width:40px;height:40px;font-size:22px}
+  .small-pill{padding:12px 14px; font-size:15px}
+  .header-cta{padding:12px 16px; font-size:15px}
+  h1{font-size:56px}
+  .btn{width:100%}
+  .hero-actions{flex-direction:column}
+  .cta-box{padding:26px}
+}
 </style>
 </head>
 <body>
-<header class="nav"><div class="wrap navin">
-<a class="brand" href="/en/"><span class="logo">ES</span><span>Emoji Script</span></a>
-<nav class="links">
-<a href="/en/#compiler">Compiler</a><a href="/en/#documentation">Documentation</a><a href="/en/#examples">Examples</a>
-<a class="lang" href="/extension-chrome/">🌐 FR</a>
-<a class="navcta" href="/en/#compiler">Open compiler →</a>
-</nav></div></header>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/en">
+        <span class="brand-mark">🤯</span>
+        <span>Emoji<b>Script</b></span>
+      </a>
 
-<main>
-<section class="hero"><div class="wrap heroGrid">
-<div>
-<div class="badge"><i></i>Official Chrome extension</div>
-<h1>Emoji Script<br><span>in your browser.</span></h1>
-<p class="lead">Access the compiler, documentation and syntax symbols directly from Chrome. Everything you need, always one click away.</p>
-<div class="actions"><a class="btn primary" href="https://chromewebstore.google.com/detail/jikhhemdcghapficdnjicfekjjiojkon?utm_source=emoji-script-site" target="_blank" rel="noopener">Add to Chrome ↗</a><a class="btn secondary" href="#features">See features</a></div>
-<div class="rating"><span class="stars">★★★★★</span><span>Available on the Chrome Web Store</span></div>
-</div>
-<div><div class="mock"><img src="/assets/chrome-web-store-emoji-script.jpg" alt="Emoji Script Chrome extension on the Chrome Web Store"></div>
-<div class="pills"><span class="pill">✓ Free</span><span class="pill">✓ No personal data collected</span><span class="pill">✓ One-click access</span></div></div>
-</div></section>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/en#compiler">Compiler</a>
+        <a href="/en#documentation">Documentation</a>
+        <a href="/en#examples">Examples</a>
+      </nav>
 
-<section id="features"><div class="wrap">
-<div class="sectionHead"><div><div class="kicker">Emoji Script Chrome Extension</div><h2>All of Emoji Script, without searching for the site.</h2></div><p class="sectionText">Pin the extension to Chrome and keep the compiler, syntax and your shortcuts available at all times.</p></div>
-<div class="cards"><article class="card"><div class="ico">⚡</div><h3>One-click access</h3><p>Open the Emoji Script compiler instantly.</p></article><article class="card"><div class="ico">📖</div><h3>Quick syntax</h3><p>Copy the main syntax emojis without wasting time.</p></article><article class="card"><div class="ico">📝</div><h3>Local notes</h3><p>Keep a script or idea close at hand in your browser.</p></article><article class="card"><div class="ico">🔒</div><h3>Privacy-friendly</h3><p>The extension does not collect personal data.</p></article></div>
-</div></section>
+      <div class="nav-actions">
+        <a class="header-secondary" href="/en/extension-chrome/">Chrome extension</a>
+        <a class="small-pill" href="/extension-chrome/">FR</a>
+        <a class="header-cta" href="/en#compiler">Start coding <span>→</span></a>
+      </div>
+    </div>
+  </header>
 
-<section><div class="wrap">
-<div class="sectionHead"><div><div class="kicker">Installation</div><h2>Installed in 3 steps.</h2></div><p class="sectionText">No extra account and no complicated setup.</p></div>
-<div class="steps"><article class="step"><h3>Add the extension</h3><p>Click “Add to Chrome” on the Chrome Web Store.</p></article><article class="step"><h3>Pin the icon</h3><p>Pin Emoji Script to the Chrome toolbar.</p></article><article class="step"><h3>You're all set!</h3><p>Open Emoji Script whenever you need it.</p></article></div>
-</div></section>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Official Chrome extension</div>
+          <h1>Emoji Script<br><span>in your browser.</span></h1>
+          <p class="hero-copy">Access the compiler, documentation and syntax symbols directly from Chrome. Everything you need, always one click away.</p>
 
-<section><div class="wrap">
-<div class="sectionHead"><div><div class="kicker">FAQ</div><h2>Everything you need to know.</h2></div></div>
-<div class="faqgrid"><div class="faq"><details><summary>Is the extension free?</summary><p>Yes. The Emoji Script extension is free.</p></details><details><summary>Do you collect any data?</summary><p>No. The extension does not collect personal data. Notes stay stored locally in your browser.</p></details><details><summary>What is the extension for?</summary><p>It acts as a permanent shortcut to the compiler, syntax, examples and Emoji Script documentation.</p></details><details><summary>How do I access the compiler?</summary><p>Click the Emoji Script icon in Chrome, then choose “Open compiler”.</p></details></div><aside class="side"><h3>Keep Emoji Script one click away.</h3><p>Built for people who regularly come back to code, test or check the syntax.</p><a class="btn secondary" href="/en/#examples">See examples →</a></aside></div>
-</div></section>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/jikhhemdcghapficdnjicfekjjiojkon?utm_source=emoji-script-site" target="_blank" rel="noopener">Add to Chrome ↗</a>
+            <a class="btn btn-secondary" href="#features">See features</a>
+          </div>
 
-<div class="wrap"><section class="cta"><div><div class="kicker">Ready?</div><h2>Add Emoji Script to Chrome.</h2><p>Your emoji compiler, syntax and shortcuts will be available directly from your browser.</p></div><a class="btn primary" href="https://chromewebstore.google.com/detail/jikhhemdcghapficdnjicfekjjiojkon?utm_source=emoji-script-site&utm_content=bottom" target="_blank" rel="noopener">Install for free ↗</a></section></div>
-</main>
+          <div class="rating"><span class="stars">★★★★★</span><span>Available on the Chrome Web Store</span></div>
+        </div>
 
-<footer><div class="wrap foot"><a class="brand" href="/en/"><span class="logo">ES</span><span>Emoji Script</span></a><span>Code with emojis, directly in your browser.</span><span>© 2026 Emoji Script</span></div></footer>
-</body></html>
+        <div>
+          <div class="hero-card">
+            <img src="/assets/chrome-extension-store.jpg" alt="Emoji Script Chrome extension">
+          </div>
+          <div class="hero-pills"><span>✓ Free</span><span>✓ No personal data collected</span><span>✓ One-click access</span><span>✓ Local notes</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="features">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <div class="kicker">FEATURES</div>
+            <h2>A real continuation of the website.</h2>
+          </div>
+          <p>The goal is simple: if you already use Emoji Script, the extension becomes the easiest shortcut to come back to it.</p>
+        </div>
+        <div class="feature-grid"><article class="card"><div class="icon">⚡</div><h3>Compiler access</h3><p>Open the compiler instantly from Chrome.</p></article><article class="card"><div class="icon">📚</div><h3>Quick documentation</h3><p>Find the docs and syntax basics without searching for the site.</p></article><article class="card"><div class="icon">🧪</div><h3>Ready-to-test examples</h3><p>Access Emoji Script examples in seconds.</p></article><article class="card"><div class="icon">📝</div><h3>Local notes</h3><p>Keep an idea or a mini script close at hand.</p></article></div>
+      </div>
+    </section>
+
+    <section class="section-shell">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <div class="kicker">INSTALLATION</div>
+            <h2>Installed in 3 steps.</h2>
+          </div>
+          <p>No complicated setup. Install it, pin it, and you're ready to go.</p>
+        </div>
+        <div class="steps-grid"><article class="step-card"><div class="step-number">1</div><h3>Add the extension</h3><p>Click the Add to Chrome button from the Chrome Web Store.</p></article><article class="step-card"><div class="step-number">2</div><h3>Pin the icon</h3><p>Place Emoji Script in your extensions bar to open it anytime.</p></article><article class="step-card"><div class="step-number">3</div><h3>Code anytime</h3><p>Quickly access the compiler, docs and examples.</p></article></div>
+      </div>
+    </section>
+
+    <section class="section-shell">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <div class="kicker">FAQ</div>
+            <h2>Simple, useful and consistent.</h2>
+          </div>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-list"><details><summary>Is the extension free?</summary><div class="faq-answer">Yes, the Emoji Script Chrome extension is free.</div></details><details><summary>Does it collect data?</summary><div class="faq-answer">No. It does not collect personal data, and the notes stay local in your browser.</div></details><details><summary>Why install the extension if the website already exists?</summary><div class="faq-answer">Because it lets you come back faster: one click is enough to reopen the Emoji Script ecosystem.</div></details><details><summary>What does the Chrome extension header button link to?</summary><div class="faq-answer">It links to this dedicated page, designed as a natural continuation of the homepage.</div></details></div>
+          <aside class="side-box">
+            <h3>Same universe. Same feeling.</h3>
+            <p>This page uses the same visual direction as the homepage to keep a true consistency between the site, the extension and the Chrome Web Store.</p>
+            <a class="btn btn-secondary" href="/en#compiler">Open the compiler →</a>
+          </aside>
+        </div>
+
+        <div class="cta-box">
+          <div>
+            <div class="kicker">READY?</div>
+            <h2>Add Emoji Script to Chrome.</h2>
+            <p>Your emoji compiler, documentation and shortcuts will always be accessible from your browser.</p>
+          </div>
+          <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/jikhhemdcghapficdnjicfekjjiojkon?utm_source=emoji-script-site-bottom" target="_blank" rel="noopener">Install for free ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <a class="brand" href="/en">
+        <span class="brand-mark">🤯</span>
+        <span>Emoji<b>Script</b></span>
+      </a>
+      <span class="footer-text">Code with emojis, directly in your browser.</span>
+      <span class="footer-text">© 2026 Emoji Script</span>
+    </div>
+  </footer>
+</body>
+</html>
