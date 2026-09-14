@@ -20,10 +20,46 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://emoji-script.com/" />
   </url>
   <url>
-    <loc>https://emoji-script.com/extension-chrome/</loc>
+    <loc>https://emoji-script.com/syntaxe/</loc>
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://emoji-script.com/syntaxe/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emoji-script.com/en/syntax/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://emoji-script.com/syntaxe/" />
+  </url>
+  <url>
+    <loc>https://emoji-script.com/en/syntax/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://emoji-script.com/syntaxe/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emoji-script.com/en/syntax/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://emoji-script.com/syntaxe/" />
+  </url>
+  <url>
+    <loc>https://emoji-script.com/exemples/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://emoji-script.com/exemples/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emoji-script.com/en/examples/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://emoji-script.com/exemples/" />
+  </url>
+  <url>
+    <loc>https://emoji-script.com/en/examples/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://emoji-script.com/exemples/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emoji-script.com/en/examples/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://emoji-script.com/exemples/" />
+  </url>
+  <url>
+    <loc>https://emoji-script.com/extension-chrome/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://emoji-script.com/extension-chrome/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://emoji-script.com/en/extension-chrome/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://emoji-script.com/extension-chrome/" />
@@ -32,7 +68,7 @@
     <loc>https://emoji-script.com/en/extension-chrome/</loc>
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://emoji-script.com/extension-chrome/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://emoji-script.com/en/extension-chrome/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://emoji-script.com/extension-chrome/" />
@@ -42,5 +78,17 @@
     <lastmod>2026-09-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://emoji-script.com/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emoji-script.com/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://emoji-script.com/privacy.html" />
+  </url>
+  <url>
+    <loc>https://emoji-script.com/en/privacy.html</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://emoji-script.com/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emoji-script.com/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://emoji-script.com/privacy.html" />
   </url>
 </urlset>

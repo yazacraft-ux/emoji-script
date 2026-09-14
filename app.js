@@ -13,13 +13,17 @@
     empty: 'Script finished with no output.', cleared: '// Output cleared.',
     timeoutText: 'Execution stopped after 2 seconds (loop running too long?).', unknown: 'Unknown error.',
     unclosed: 'Unclosed string: add 🤫 at the end of your text.', forbidden: 'Forbidden identifier', symbol: 'Unknown symbol near',
-    tooMany: 'Output stopped: too many lines displayed.', noWorker: 'Your browser blocked the execution sandbox.'
+    tooMany: 'Output stopped: too many lines displayed.', noWorker: 'Your browser blocked the execution sandbox.',
+    share: 'Share', linkCopied: 'Link copied ✓', linkTooLong: 'Script too long to be shared as a link.',
+    linkFailed: 'The link could not be copied.', loadedFromLink: '// Script loaded from a shared link. Press Run.'
   } : {
     copied: 'Copié ✓', copy: 'Copier', running: 'exécution…', error: 'erreur', done: 'terminé', timeout: 'timeout', ready: 'prêt',
     empty: 'Script terminé sans sortie.', cleared: '// Sortie vidée.',
     timeoutText: 'Exécution stoppée après 2 secondes (boucle trop longue ?).', unknown: 'Erreur inconnue.',
     unclosed: 'Texte non fermé : ajoute 🤫 à la fin de ta chaîne.', forbidden: 'Identifiant interdit', symbol: 'Symbole inconnu près de',
-    tooMany: 'Affichage stoppé : trop de lignes générées.', noWorker: 'Ton navigateur a bloqué le bac à sable d’exécution.'
+    tooMany: 'Affichage stoppé : trop de lignes générées.', noWorker: 'Ton navigateur a bloqué le bac à sable d’exécution.',
+    share: 'Partager', linkCopied: 'Lien copié ✓', linkTooLong: 'Script trop long pour être partagé en lien.',
+    linkFailed: 'Le lien n’a pas pu être copié.', loadedFromLink: '// Script chargé depuis un lien partagé. Clique sur Exécuter.'
   };
 
   /* ---------------------------------------------------------------- Menu */
@@ -73,6 +77,7 @@
   var copyBtn = document.getElementById('copyBtn');
   var clearBtn = document.getElementById('clearBtn');
   var clearOutputBtn = document.getElementById('clearOutputBtn');
+  var shareBtn = document.getElementById('shareBtn');
 
   var examples = {
     hello: '🗣️🌜💬Hello, world! 👋🤫🌛🙏',
@@ -193,20 +198,27 @@
     // Concaténation volontaire (et non un template littéral) : le code compilé
     // ne peut ainsi jamais être interprété comme une interpolation ${...}
     return [
+      // le worker est neutralisé avant d'exécuter quoi que ce soit
+      'var __blocked = ["fetch","XMLHttpRequest","WebSocket","EventSource","importScripts",',
+      '  "Worker","SharedWorker","indexedDB","caches","navigator","postMessage"];',
+      'var __post = postMessage.bind(self);',
+      '__blocked.forEach(function (name) {',
+      '  try { Object.defineProperty(self, name, { value: undefined, configurable: false }); } catch (e) {}',
+      '});',
       'var print = function () {',
       '  var parts = Array.prototype.map.call(arguments, function (v) {',
       '    return typeof v === "object" && v !== null ? JSON.stringify(v) : String(v);',
       '  });',
-      '  postMessage({ type: "out", value: parts.join(" ") });',
+      '  __post({ type: "out", value: parts.join(" ") });',
       '};',
       'var len = function (value) {',
       '  return value != null && typeof value.length === "number" ? value.length : 0;',
       '};',
       'try {',
       compiled,
-      '  postMessage({ type: "done" });',
+      '  __post({ type: "done" });',
       '} catch (error) {',
-      '  postMessage({ type: "error", value: error && error.message ? error.message : String(error) });',
+      '  __post({ type: "error", value: error && error.message ? error.message : String(error) });',
       '}'
     ].join('\n');
   }
@@ -350,6 +362,79 @@
       output.appendChild(placeholder);
       setStatus(i18n.ready);
     });
+  }
+
+
+  /* ------------------------------------------------- Partage par lien */
+  function encodeScript(text) {
+    var bytes = new TextEncoder().encode(text);
+    var binary = '';
+    for (var i = 0; i < bytes.length; i += 1) binary += String.fromCharCode(bytes[i]);
+    return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function decodeScript(value) {
+    var base64 = value.replace(/-/g, '+').replace(/_/g, '/');
+    while (base64.length % 4) base64 += '=';
+    var binary = atob(base64);
+    var bytes = new Uint8Array(binary.length);
+    for (var i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  }
+
+  function shareLink() {
+    var encoded;
+    try {
+      encoded = encodeScript(codeInput.value);
+    } catch (err) {
+      setStatus(i18n.error, 'error');
+      return;
+    }
+
+    var url = location.origin + location.pathname + '#s=' + encoded;
+    if (url.length > 8000) {
+      output.innerHTML = '';
+      pending = [];
+      appendLine(i18n.linkTooLong, 'error');
+      setStatus(i18n.error, 'error');
+      return;
+    }
+
+    history.replaceState(null, '', '#s=' + encoded);
+
+    var confirmCopy = function () {
+      shareBtn.textContent = i18n.linkCopied;
+      setTimeout(function () { shareBtn.textContent = i18n.share; }, 1600);
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(confirmCopy, function () {
+        appendLine(i18n.linkFailed, 'error');
+      });
+    } else {
+      appendLine(url);
+    }
+  }
+
+  if (shareBtn) shareBtn.addEventListener('click', shareLink);
+
+  var sharedMatch = /[#&]s=([A-Za-z0-9\-_]+)/.exec(location.hash);
+  if (sharedMatch) {
+    try {
+      var shared = decodeScript(sharedMatch[1]);
+      if (shared) {
+        codeInput.value = shared;
+        output.innerHTML = '';
+        var note = document.createElement('span');
+        note.className = 'muted';
+        note.textContent = i18n.loadedFromLink;
+        output.appendChild(note);
+        var target = document.getElementById('compiler');
+        if (target) setTimeout(function () { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120);
+      }
+    } catch (err) {
+      /* lien abîmé : on garde le script par défaut */
+    }
   }
 
   Array.prototype.forEach.call(document.querySelectorAll('[data-example]'), function (btn) {

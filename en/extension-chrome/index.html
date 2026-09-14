@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' blob:; worker-src 'self' blob:; child-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>Emoji Script Chrome Extension - Code with emojis</title>
   <meta name="description" content="Discover the official Emoji Script Chrome extension to access the compiler, documentation, examples and syntax in one click.">
@@ -16,6 +17,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
 
   <meta property="og:type" content="website">
@@ -108,7 +110,7 @@
 
       <div>
         <div class="hero-visual">
-          <img src="/assets/og-extension-en.png" alt="Emoji Script Chrome extension" width="1200" height="630" decoding="async" fetchpriority="high">
+          <img src="/assets/hero-extension-en.webp" alt="Emoji Script Chrome extension" width="960" height="504" decoding="async" fetchpriority="high">
         </div>
         <div class="hero-pills"><span>✓ Free</span><span>✓ No personal data collected</span><span>✓ One-click access</span><span>✓ Local notes</span></div>
       </div>
@@ -181,7 +183,7 @@
   <footer>
     <a class="brand footer-brand" href="/en/"><span class="brand-mark" aria-hidden="true">🤯</span><span>Emoji<span>Script</span></span></a>
     <p>Code with emojis, directly in your browser.</p>
-    <span>© <span id="year">2026</span> Emoji Script · <a class="footer-link" href="/en/">Compiler</a> · <a class="footer-lang" href="/extension-chrome/" hreflang="fr" lang="fr">Français</a></span>
+    <span>© <span id="year">2026</span> Emoji Script · <a class="footer-link" href="/en/syntax/">Syntax</a> · <a class="footer-link" href="/en/examples/">Examples</a> · <a class="footer-link" href="/en/extension-chrome/">Chrome extension</a> · <a class="footer-link" href="/en/privacy.html">Privacy</a> · <a class="footer-lang" href="/extension-chrome/" hreflang="fr" lang="fr">Français</a></span>
   </footer>
 
   <script src="/app.js" defer></script>

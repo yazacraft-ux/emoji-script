@@ -3,6 +3,16 @@
    Base visuelle : la home page (couleurs, rayons, typo, composants)
    ========================================================================== */
 
+/* 0. Police Inter (variable, sous-ensemble latin, hébergée sur le site) ---- */
+@font-face{
+  font-family:Inter;
+  font-style:normal;
+  font-weight:100 900;
+  font-display:swap;
+  src:url(/assets/fonts/inter-latin.woff2) format('woff2-variations');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
 /* 1. Variables de design ------------------------------------------------- */
 :root{
   color-scheme:dark;
@@ -183,6 +193,7 @@ footer p{text-align:center;margin:0}
 
 /* 13. Pages de contenu (confidentialité) --------------------------------- */
 .page-shell{max-width:880px;margin:0 auto;padding:64px 28px 40px}
+.page-shell.wide{max-width:1180px}
 .page-title{font-size:clamp(34px,6vw,56px);line-height:1.02;letter-spacing:-.05em;margin:12px 0 0;max-width:none}
 .legal-card{max-width:880px;margin:0 auto 70px;border:1px solid var(--line);background:#111118;border-radius:var(--radius);padding:36px}
 .legal-card h2{font-size:19px;letter-spacing:-.02em;margin:32px 0 8px}
@@ -191,6 +202,25 @@ footer p{text-align:center;margin:0}
 .legal-card strong{color:#fff}
 .legal-card a{color:var(--yellow);text-decoration:underline;text-underline-offset:3px}
 .legal-note{margin-top:30px;padding:16px 18px;border:1px solid var(--line);background:#0d0d12;border-radius:14px;color:#9292a2;font-size:13px}
+
+
+/* 13 bis. Pages syntaxe et exemples -------------------------------------- */
+.page-intro{max-width:720px;margin:18px 0 0;color:var(--muted);font-size:17px;line-height:1.65}
+.token-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
+.section-more{margin:26px 0 0;color:var(--muted);font-size:14px;max-width:760px}
+.section-more a{color:var(--yellow);font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.sample-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start}
+.code-sample{border:1px solid var(--line);background:#111118;border-radius:var(--radius);overflow:hidden}
+.sample-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line);background:#14141c}
+.sample-head h3{margin:0;font-size:15px;letter-spacing:-.02em}
+.sample-head small{font-size:11px;color:#6f6f80;text-transform:uppercase;letter-spacing:.1em}
+.code-sample pre{margin:0;padding:20px 18px;overflow:auto;font:600 14px/1.9 ui-monospace,SFMono-Regular,Menlo,monospace;color:#e8e8ef;background:#0d0d12}
+.sample-result{padding:16px 18px;border-top:1px solid #1e1e28;background:#0b0b10;font:600 13px/1.8 ui-monospace,SFMono-Regular,Menlo,monospace;color:#e8e8ef}
+.result-line{display:block}
+.result-line:before{content:">";color:var(--yellow);margin-right:10px}
+.sample-note{margin:0;padding:16px 18px;color:#8c8c9c;font-size:13px;line-height:1.7;border-top:1px solid var(--line)}
+.sample-actions{padding:0 18px 18px}
+.sample-actions a{color:var(--yellow);font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:4px}
 
 /* 14. Page 404 ----------------------------------------------------------- */
 .error-page{display:grid;place-items:center;text-align:center;min-height:62vh;padding:70px 28px 90px}
@@ -256,6 +286,13 @@ footer p{text-align:center;margin:0}
   h1{font-size:50px}
   .example-grid,.feature-grid{grid-template-columns:1fr}
   .token-row code{font-size:12px}
+}
+
+@media(max-width:1100px){
+  .token-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  .sample-grid,.token-grid{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}

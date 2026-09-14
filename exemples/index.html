@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' blob:; worker-src 'self' blob:; child-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Exemples de code Emoji Script à copier-coller</title>
+  <meta name="description" content="Dix scripts Emoji Script prêts à copier-coller : hello world, variables, calculs, conditions, boucles, compte à rebours et longueur de texte.">
+  <meta name="theme-color" content="#09090d">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <link rel="canonical" href="https://emoji-script.com/exemples/">
+  <link rel="alternate" hreflang="fr" href="https://emoji-script.com/exemples/">
+  <link rel="alternate" hreflang="en" href="https://emoji-script.com/en/examples/">
+  <link rel="alternate" hreflang="x-default" href="https://emoji-script.com/exemples/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Emoji Script">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title" content="Exemples de code Emoji Script à copier-coller">
+  <meta property="og:description" content="Dix scripts Emoji Script prêts à copier-coller : hello world, variables, calculs, conditions, boucles, compte à rebours et longueur de texte.">
+  <meta property="og:url" content="https://emoji-script.com/exemples/">
+  <meta property="og:image" content="https://emoji-script.com/og-image-fr.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Exemples de code Emoji Script à copier-coller">
+  <meta name="twitter:description" content="Dix scripts Emoji Script prêts à copier-coller : hello world, variables, calculs, conditions, boucles, compte à rebours et longueur de texte.">
+  <meta name="twitter:image" content="https://emoji-script.com/og-image-fr.png">
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebPage",
+        "@id":"https://emoji-script.com/exemples/#webpage",
+        "url":"https://emoji-script.com/exemples/",
+        "name":"Exemples de code Emoji Script à copier-coller",
+        "description":"Dix scripts Emoji Script prêts à copier-coller : hello world, variables, calculs, conditions, boucles, compte à rebours et longueur de texte.",
+        "inLanguage":"fr-FR",
+        "isPartOf":{"@id":"https://emoji-script.com/#website"}
+      },
+      {
+        "@type":"BreadcrumbList",
+        "@id":"https://emoji-script.com/exemples/#breadcrumb",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Emoji Script","item":"https://emoji-script.com/"},
+          {"@type":"ListItem","position":2,"name":"Exemples","item":"https://emoji-script.com/exemples/"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Emoji Script - Accueil">
+      <span class="brand-mark" aria-hidden="true">🤯</span>
+      <span>Emoji<span>Script</span></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Navigation principale">
+      <a href="/#compiler">Compilateur</a>
+      <a href="/#documentation">Documentation</a>
+      <a href="/#examples">Exemples</a>
+    </nav>
+    <div class="header-tools">
+      <a class="header-secondary" href="/extension-chrome/">Extension Chrome</a>
+      <a class="lang-switch desktop-lang" href="/en/examples/" hreflang="en" lang="en" aria-label="English version">EN</a>
+      <a class="header-cta" href="/#compiler">Coder maintenant <span aria-hidden="true">→</span></a>
+    </div>
+    <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <a href="/#compiler">Compilateur</a>
+      <a href="/#documentation">Documentation</a>
+      <a href="/#examples">Exemples</a>
+      <a href="/syntaxe/">Syntaxe</a>
+      <a href="/exemples/">Exemples</a>
+      <a href="/extension-chrome/">Extension Chrome</a>
+      <a href="/en/examples/" hreflang="en" lang="en">🇬🇧 English</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="page-shell wide">
+      <span class="kicker">EXEMPLES</span>
+      <h1 class="page-title">Dix scripts <span>prêts à exécuter.</span></h1>
+      <p class="page-intro">Chaque exemple montre le code, le résultat exact qu’il affiche et ce qu’il faut retenir. Le lien sous chaque script l’ouvre directement dans le compilateur, déjà chargé.</p>
+    </div>
+
+    <section class="section-shell">
+      <div class="section-heading compact">
+        <div><h2>Du plus simple au plus complet.</h2></div>
+      </div>
+      <div class="sample-grid">
+        <article class="code-sample">
+          <div class="sample-head"><h3>Hello world</h3><small>Résultat</small></div>
+          <pre><code>🗣️🌜💬Hello, world! 👋🤫🌛🙏</code></pre>
+          <div class="sample-result"><span class="result-line">Hello, world! 👋</span></div>
+          <p class="sample-note">Le plus court des scripts : 🗣️ affiche, les lunes encadrent, et le texte vit entre 💬 et 🤫.</p>
+          <div class="sample-actions"><a href="/#s=8J-Xo--4j_CfjJzwn5KsSGVsbG8sIHdvcmxkISDwn5GL8J-kq_CfjJvwn5mP">Ouvrir dans le compilateur →</a></div>
+        </article>
+        <article class="code-sample">
+          <div class="sample-head"><h3>Une variable</h3><small>Résultat</small></div>
+          <pre><code>score➡️7️⃣🙏
+🗣️🌜score🌛🙏</code></pre>
+          <div class="sample-result"><span class="result-line">7</span></div>
+          <p class="sample-note">La flèche range la valeur dans la variable. Le nom de la variable s’écrit en lettres normales.</p>
+          <div class="sample-actions"><a href="/#s=c2NvcmXinqHvuI8377iP4oOj8J-Zjwrwn5ej77iP8J-MnHNjb3Jl8J-Mm_CfmY8">Ouvrir dans le compilateur →</a></div>
+        </article>
+        <article class="code-sample">
+          <div class="sample-head"><h3>Un calcul</h3><small>Résultat</small></div>
+          <pre><code>prix➡️1️⃣2️⃣🙏
+quantite➡️3️⃣🙏
+🗣️🌜prix✖️quantite🌛🙏</code></pre>
+          <div class="sample-result"><span class="result-line">36</span></div>
+          <p class="sample-note">Les quatre opérations fonctionnent comme sur une calculatrice, avec ➕ ➖ ✖️ et ➗.</p>
+          <div class="sample-actions"><a href="/#s=cHJpeOKeoe-4jzHvuI_ig6My77iP4oOj8J-ZjwpxdWFudGl0ZeKeoe-4jzPvuI_ig6Pwn5mPCvCfl6PvuI_wn4yccHJpeOKclu-4j3F1YW50aXRl8J-Mm_CfmY8">Ouvrir dans le compilateur →</a></div>
+        </article>
+        <article class="code-sample">
+          <div class="sample-head"><h3>Une condition</h3><small>Résultat</small></div>
+          <pre><code>age➡️1️⃣8️⃣🙏
+🤔🌜age💪1️⃣7️⃣🌛👉🔓
+  🗣️🌜💬Accès autorisé ✅🤫🌛🙏
+🔒🙃👉🔓
+  🗣️🌜💬Accès refusé ❌🤫🌛🙏
+🔒</code></pre>
+          <div class="sample-result"><span class="result-line">Accès autorisé ✅</span></div>
+          <p class="sample-note">Si la condition entre les lunes est vraie, le premier bloc s’exécute. Sinon, c’est celui du 🙃.</p>
+          <div class="sample-actions"><a href="/#s=YWdl4p6h77iPMe-4j-KDozjvuI_ig6Pwn5mPCvCfpJTwn4ycYWdl8J-SqjHvuI_ig6M377iP4oOj8J-Mm_CfkYnwn5STCiAg8J-Xo--4j_CfjJzwn5KsQWNjw6hzIGF1dG9yaXPDqSDinIXwn6Sr8J-Mm_CfmY8K8J-UkvCfmYPwn5GJ8J-UkwogIPCfl6PvuI_wn4yc8J-SrEFjY8OocyByZWZ1c8OpIOKdjPCfpKvwn4yb8J-Zjwrwn5SS">Ouvrir dans le compilateur →</a></div>
+        </article>
+        <article class="code-sample">
+          <div class="sample-head"><h3>Compter de 1 à 5</h3><small>Résultat</small></div>
+          <pre><code>i➡️1️⃣🙏
+🔁🌜i🤏6️⃣🌛👉🔓
+  🗣️🌜i🌛🙏
+  i➡️i➕1️⃣🙏
+🔒</code></pre>
+          <div class="sample-result"><span class="result-line">1</span><span class="result-line">2</span><span class="result-line">3</span><span class="result-line">4</span><span class="result-line">5</span></div>
+          <p class="sample-note">Tant que i est plus petit que 6, le bloc tourne. La dernière ligne fait avancer le compteur, sans elle la boucle ne s’arrêterait jamais.</p>
+          <div class="sample-actions"><a href="/#s=aeKeoe-4jzHvuI_ig6Pwn5mPCvCflIHwn4ycafCfpI8277iP4oOj8J-Mm_CfkYnwn5STCiAg8J-Xo--4j_CfjJxp8J-Mm_CfmY8KICBp4p6h77iPaeKelTHvuI_ig6Pwn5mPCvCflJI">Ouvrir dans le compilateur →</a></div>
+        </article>
+        <article class="code-sample">
+          <div class="sample-head"><h3>Un compte à rebours</h3><small>Résultat</small></div>
+          <pre><code>n➡️5️⃣🙏
+🔁🌜n💪0️⃣🌛👉🔓
+  🗣️🌜n🌛🙏
+  n➡️n➖1️⃣🙏
+🔒
+🗣️🌜💬Décollage 🚀🤫🌛🙏</code></pre>
+          <div class="sample-result"><span class="result-line">5</span><span class="result-line">4</span><span class="result-line">3</span><span class="result-line">2</span><span class="result-line">1</span><span class="result-line">Décollage 🚀</span></div>
+          <p class="sample-note">Même principe, mais le compteur descend. La dernière ligne s’exécute une fois la boucle terminée.</p>
+          <div class="sample-actions"><a href="/#s=buKeoe-4jzXvuI_ig6Pwn5mPCvCflIHwn4ycbvCfkqow77iP4oOj8J-Mm_CfkYnwn5STCiAg8J-Xo--4j_CfjJxu8J-Mm_CfmY8KICBu4p6h77iPbuKeljHvuI_ig6Pwn5mPCvCflJIK8J-Xo--4j_CfjJzwn5KsRMOpY29sbGFnZSDwn5qA8J-kq_CfjJvwn5mP">Ouvrir dans le compilateur →</a></div>
+        </article>
+        <article class="code-sample">
+          <div class="sample-head"><h3>La table de 7</h3><small>Résultat</small></div>
+          <pre><code>i➡️1️⃣🙏
+🔁🌜i🤏6️⃣🌛👉🔓
+  🗣️🌜7️⃣✖️i🌛🙏
+  i➡️i➕1️⃣🙏
+🔒</code></pre>
+          <div class="sample-result"><span class="result-line">7</span><span class="result-line">14</span><span class="result-line">21</span><span class="result-line">28</span><span class="result-line">35</span></div>
+          <p class="sample-note">Une boucle et une multiplication suffisent à sortir une table entière.</p>
+          <div class="sample-actions"><a href="/#s=aeKeoe-4jzHvuI_ig6Pwn5mPCvCflIHwn4ycafCfpI8277iP4oOj8J-Mm_CfkYnwn5STCiAg8J-Xo--4j_CfjJw377iP4oOj4pyW77iPafCfjJvwn5mPCiAgaeKeoe-4j2ninpUx77iP4oOj8J-Zjwrwn5SS">Ouvrir dans le compilateur →</a></div>
+        </article>
+        <article class="code-sample">
+          <div class="sample-head"><h3>La somme de 1 à 10</h3><small>Résultat</small></div>
+          <pre><code>total➡️0️⃣🙏
+i➡️1️⃣🙏
+🔁🌜i🤏1️⃣1️⃣🌛👉🔓
+  total➡️total➕i🙏
+  i➡️i➕1️⃣🙏
+🔒
+🗣️🌜total🌛🙏</code></pre>
+          <div class="sample-result"><span class="result-line">55</span></div>
+          <p class="sample-note">Deux variables : une pour le compteur, une pour le résultat qui s’accumule à chaque tour.</p>
+          <div class="sample-actions"><a href="/#s=dG90YWzinqHvuI8w77iP4oOj8J-Zjwpp4p6h77iPMe-4j-KDo_CfmY8K8J-UgfCfjJxp8J-kjzHvuI_ig6Mx77iP4oOj8J-Mm_CfkYnwn5STCiAgdG90YWzinqHvuI90b3RhbOKelWnwn5mPCiAgaeKeoe-4j2ninpUx77iP4oOj8J-Zjwrwn5SSCvCfl6PvuI_wn4ycdG90YWzwn4yb8J-Zjw">Ouvrir dans le compilateur →</a></div>
+        </article>
+        <article class="code-sample">
+          <div class="sample-head"><h3>La longueur d’un texte</h3><small>Résultat</small></div>
+          <pre><code>message➡️💬Emoji Script 🤯🤫🙏
+🗣️🌜📏🌜message🌛🌛🙏</code></pre>
+          <div class="sample-result"><span class="result-line">15</span></div>
+          <p class="sample-note">📏 compte les caractères. Attention, un emoji occupe souvent deux caractères pour le navigateur.</p>
+          <div class="sample-actions"><a href="/#s=bWVzc2FnZeKeoe-4j_CfkqxFbW9qaSBTY3JpcHQg8J-kr_CfpKvwn5mPCvCfl6PvuI_wn4yc8J-Tj_CfjJxtZXNzYWdl8J-Mm_CfjJvwn5mP">Ouvrir dans le compilateur →</a></div>
+        </article>
+        <article class="code-sample">
+          <div class="sample-head"><h3>Coller deux textes</h3><small>Résultat</small></div>
+          <pre><code>prenom➡️💬Yoann🤫🙏
+🗣️🌜💬Salut 🤫➕prenom🌛🙏</code></pre>
+          <div class="sample-result"><span class="result-line">Salut Yoann</span></div>
+          <p class="sample-note">Le ➕ sert aussi à mettre deux textes bout à bout.</p>
+          <div class="sample-actions"><a href="/#s=cHJlbm9t4p6h77iP8J-SrFlvYW5u8J-kq_CfmY8K8J-Xo--4j_CfjJzwn5KsU2FsdXQg8J-kq-KelXByZW5vbfCfjJvwn5mP">Ouvrir dans le compilateur →</a></div>
+        </article>
+      </div>
+      <p class="section-more">Tu peux modifier n’importe lequel de ces scripts dans le compilateur, puis cliquer sur Partager pour obtenir un lien qui rouvre ta version.</p>
+    </section>
+
+    <section class="cta-section section-shell">
+      <div>
+        <span class="kicker">À TOI</span>
+        <h2>Teste la syntaxe<br><span>dans le compilateur.</span></h2>
+        <p>Le compilateur est gratuit, sans compte et tourne entièrement dans ton navigateur.</p>
+      </div>
+      <a class="btn btn-primary" href="/syntaxe/">Voir la syntaxe complète →</a>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true">🤯</span><span>Emoji<span>Script</span></span></a>
+    <p>Coder avec des emojis, directement dans le navigateur.</p>
+    <span>© <span id="year">2026</span> Emoji Script · <a class="footer-link" href="/syntaxe/">Syntaxe</a> · <a class="footer-link" href="/exemples/">Exemples</a> · <a class="footer-link" href="/extension-chrome/">Extension Chrome</a> · <a class="footer-link" href="/privacy.html">Confidentialité</a> · <a class="footer-lang" href="/en/examples/" hreflang="en" lang="en">English</a></span>
+  </footer>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

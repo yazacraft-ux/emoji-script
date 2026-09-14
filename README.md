@@ -4,19 +4,23 @@ Site bilingue FR / EN prêt pour GitHub Pages, avec un design unique partagé pa
 
 ## URLs
 
-- Français : `https://emoji-script.com/`
-- English : `https://emoji-script.com/en/`
-- Extension Chrome FR : `https://emoji-script.com/extension-chrome/`
-- Extension Chrome EN : `https://emoji-script.com/en/extension-chrome/`
-- Confidentialité : `https://emoji-script.com/privacy.html`
+| Français | English |
+| --- | --- |
+| `/` | `/en/` |
+| `/syntaxe/` | `/en/syntax/` |
+| `/exemples/` | `/en/examples/` |
+| `/extension-chrome/` | `/en/extension-chrome/` |
+| `/privacy.html` | `/en/privacy.html` |
 
 ## Fichiers
 
 - `index.html` : accueil français
 - `en/index.html` : accueil anglais
+- `syntaxe/index.html` et `en/syntax/index.html` : référence complète de la syntaxe
+- `exemples/index.html` et `en/examples/index.html` : dix scripts commentés
 - `extension-chrome/index.html` : page extension française
 - `en/extension-chrome/index.html` : page extension anglaise
-- `privacy.html` : politique de confidentialité
+- `privacy.html` et `en/privacy.html` : politique de confidentialité
 - `404.html` : page 404 bilingue
 - `styles.css` : **une seule** feuille de style pour tout le site
 - `app.js` : **un seul** script pour tout le site (compilateur + menu mobile)
@@ -42,12 +46,25 @@ Dans `/extension-icons/` : `icon-16/32/48/128.png`, à mettre dans le package de
 
 Le dessin de l'emoji provient de Noto Color Emoji (Google), sous licence Open Font License.
 
+
+## Fonctionnement du partage de scripts
+
+Le bouton Partager du compilateur encode le script dans l'adresse, sous la forme `/#s=<script encodé>`. Ouvrir ce lien recharge le script dans l'éditeur. Les liens « Ouvrir dans le compilateur » des pages d'exemples utilisent le même mécanisme. Rien n'est envoyé à un serveur.
+
+## Sécurité du compilateur
+
+Le code saisi s'exécute dans un Web Worker isolé, avec un arrêt automatique après 2 secondes et un plafond de 400 lignes affichées. Les API réseau du worker sont neutralisées avant l'exécution, et chaque page déclare une Content-Security-Policy qui interdit l'évaluation de chaînes en JavaScript.
+
+## Police
+
+Inter est hébergée sur le site (`assets/fonts/inter-latin.woff2`, version variable, sous-ensemble latin, 47 Ko). Aucune requête vers Google Fonts.
+
 ## SEO
 
 - Titles et meta descriptions inchangés
 - canonical + `hreflang` FR / EN / x-default sur les 4 pages
 - Open Graph et Twitter Cards par langue
 - Schema.org : `WebSite`, `SoftwareApplication`, `BreadcrumbList`, `FAQPage`
-- `sitemap.xml` bilingue avec alternates
+- `sitemap.xml` bilingue avec alternates sur les 10 pages
 
 Aucun build n'est nécessaire sur GitHub Pages. Publie la branche `main` depuis `/ (root)`.

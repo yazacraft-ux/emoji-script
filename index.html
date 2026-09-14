@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' blob:; worker-src 'self' blob:; child-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>Emoji Script - Coder avec des emojis - Copier &amp; Coller</title>
   <meta name="description" content="Code avec des emojis grâce à Emoji Script : écris, copie-colle et exécute des scripts en ligne avec 🤔 🔁 🗣️ 💯. Gratuit, rapide et sans installation.">
@@ -16,6 +17,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
 
   <meta property="og:type" content="website">
@@ -126,6 +128,7 @@
           <div class="panel-head">
             <div><span class="panel-icon" aria-hidden="true">✍️</span><strong>Code</strong><small>main.emoji</small></div>
             <div class="panel-actions">
+              <button type="button" id="shareBtn">Partager</button>
               <button type="button" id="copyBtn">Copier</button>
               <button type="button" id="clearBtn">Effacer</button>
             </div>
@@ -165,6 +168,7 @@ score➡️3️⃣🙏
         <button class="example-card" data-example="loop" type="button"><span aria-hidden="true">🔁</span><strong>Boucle</strong><small>Compte de 1 à 5</small></button>
         <button class="example-card" data-example="length" type="button"><span aria-hidden="true">📏</span><strong>Longueur</strong><small>Utilise len(...)</small></button>
       </div>
+      <p class="section-more"><a href="/exemples/">Voir les dix exemples commentés →</a></p>
     </section>
 
     <section class="docs section-shell" id="documentation" aria-labelledby="docs-title">
@@ -215,6 +219,7 @@ score➡️3️⃣🙏
           </article>
         </div>
       </div>
+      <p class="section-more"><a href="/syntaxe/">La syntaxe complète, symbole par symbole →</a></p>
     </section>
 
     <section class="cta-section section-shell">
@@ -230,7 +235,7 @@ score➡️3️⃣🙏
   <footer>
     <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">🤯</span><span>Emoji<span>Script</span></span></a>
     <p>Coder avec des emojis, directement dans le navigateur.</p>
-    <span>© <span id="year">2026</span> Emoji Script · <a class="footer-link" href="/extension-chrome/">Extension Chrome</a> · <a class="footer-link" href="/privacy.html">Confidentialité</a> · <a class="footer-lang" href="/en/" hreflang="en" lang="en">English</a></span>
+    <span>© <span id="year">2026</span> Emoji Script · <a class="footer-link" href="/syntaxe/">Syntaxe</a> · <a class="footer-link" href="/exemples/">Exemples</a> · <a class="footer-link" href="/extension-chrome/">Extension Chrome</a> · <a class="footer-link" href="/privacy.html">Confidentialité</a> · <a class="footer-lang" href="/en/" hreflang="en" lang="en">English</a></span>
   </footer>
 
   <script src="/app.js" defer></script>

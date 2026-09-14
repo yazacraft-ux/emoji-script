@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' blob:; worker-src 'self' blob:; child-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Emoji Script syntax: every symbol and its code equivalent</title>
+  <meta name="description" content="The full Emoji Script syntax: every emoji, its code equivalent and runnable examples. Variables, conditions, loops, text and numbers.">
+  <meta name="theme-color" content="#09090d">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <link rel="canonical" href="https://emoji-script.com/en/syntax/">
+  <link rel="alternate" hreflang="fr" href="https://emoji-script.com/syntaxe/">
+  <link rel="alternate" hreflang="en" href="https://emoji-script.com/en/syntax/">
+  <link rel="alternate" hreflang="x-default" href="https://emoji-script.com/syntaxe/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Emoji Script">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta property="og:title" content="Emoji Script syntax: every symbol and its code equivalent">
+  <meta property="og:description" content="The full Emoji Script syntax: every emoji, its code equivalent and runnable examples. Variables, conditions, loops, text and numbers.">
+  <meta property="og:url" content="https://emoji-script.com/en/syntax/">
+  <meta property="og:image" content="https://emoji-script.com/og-image-en.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Emoji Script syntax: every symbol and its code equivalent">
+  <meta name="twitter:description" content="The full Emoji Script syntax: every emoji, its code equivalent and runnable examples. Variables, conditions, loops, text and numbers.">
+  <meta name="twitter:image" content="https://emoji-script.com/og-image-en.png">
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebPage",
+        "@id":"https://emoji-script.com/en/syntax/#webpage",
+        "url":"https://emoji-script.com/en/syntax/",
+        "name":"Emoji Script syntax: every symbol and its code equivalent",
+        "description":"The full Emoji Script syntax: every emoji, its code equivalent and runnable examples. Variables, conditions, loops, text and numbers.",
+        "inLanguage":"en-US",
+        "isPartOf":{"@id":"https://emoji-script.com/en/#website"}
+      },
+      {
+        "@type":"BreadcrumbList",
+        "@id":"https://emoji-script.com/en/syntax/#breadcrumb",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Emoji Script","item":"https://emoji-script.com/en/"},
+          {"@type":"ListItem","position":2,"name":"Syntax","item":"https://emoji-script.com/en/syntax/"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="/en/" aria-label="Emoji Script - Home">
+      <span class="brand-mark" aria-hidden="true">🤯</span>
+      <span>Emoji<span>Script</span></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="/en/#compiler">Compiler</a>
+      <a href="/en/#documentation">Documentation</a>
+      <a href="/en/#examples">Examples</a>
+    </nav>
+    <div class="header-tools">
+      <a class="header-secondary" href="/en/extension-chrome/">Chrome extension</a>
+      <a class="lang-switch desktop-lang" href="/syntaxe/" hreflang="fr" lang="fr" aria-label="Version française">FR</a>
+      <a class="header-cta" href="/en/#compiler">Start coding <span aria-hidden="true">→</span></a>
+    </div>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <a href="/en/#compiler">Compiler</a>
+      <a href="/en/#documentation">Documentation</a>
+      <a href="/en/#examples">Examples</a>
+      <a href="/en/syntax/">Syntax</a>
+      <a href="/en/examples/">Examples</a>
+      <a href="/en/extension-chrome/">Chrome extension</a>
+      <a href="/syntaxe/" hreflang="fr" lang="fr">🇫🇷 Français</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="page-shell wide">
+      <span class="kicker">DOCUMENTATION</span>
+      <h1 class="page-title">The syntax, <span>symbol by symbol.</span></h1>
+      <p class="page-intro">Emoji Script replaces the keywords of a programming language with emojis. Everything else stays the same: variables, conditions, loops and statements read from top to bottom. This page gathers every symbol of the language, what it replaces and how to put them together.</p>
+    </div>
+
+    <section class="section-shell">
+      <div class="section-heading compact">
+        <div><span class="kicker">THE BASICS</span><h2>Six rules and you can read any script.</h2></div>
+      </div>
+      <div class="feature-grid">
+        <article class="info-card"><div class="icon" aria-hidden="true">🙏</div><h3>Every statement ends</h3><p>Like a full stop at the end of a sentence. Without it, the compiler cannot tell where your statement stops.</p></article>
+        <article class="info-card"><div class="icon" aria-hidden="true">🔓 🔒</div><h3>Blocks open and close</h3><p>Everything between the open padlock and the closed padlock belongs to the condition or to the loop.</p></article>
+        <article class="info-card"><div class="icon" aria-hidden="true">💬 🤫</div><h3>Text goes between quotes</h3><p>Everything between these two emojis is printed as is, emojis included.</p></article>
+        <article class="info-card"><div class="icon" aria-hidden="true">🌜 🌛</div><h3>Moons are parentheses</h3><p>They wrap a condition or whatever you want to print.</p></article>
+        <article class="info-card"><div class="icon" aria-hidden="true">👉</div><h3>The finger announces the block</h3><p>It sits between the condition and the block that follows it.</p></article>
+        <article class="info-card"><div class="icon" aria-hidden="true">abc</div><h3>Names stay in letters</h3><p>Variables are written with regular letters: score, age, message.</p></article>
+      </div>
+    </section>
+
+    <section class="section-shell">
+      <div class="section-heading">
+        <div><span class="kicker">REFERENCE</span><h2>Every symbol of the language.</h2></div>
+        <p>On the left the emoji, in the middle its equivalent in a classic language, on the right what it does.</p>
+      </div>
+      <div class="token-grid">
+        <div class="docs-card"><h3>Values and numbers</h3><div class="token-table"><div class="token-row"><code>0️⃣ 1️⃣ 2️⃣ … 9️⃣</code><span>0 1 2 … 9</span><small>The digits</small></div><div class="token-row"><code>⏺️</code><span>.</span><small>The decimal point</small></div><div class="token-row"><code>💯</code><span>true</span><small>True</small></div><div class="token-row"><code>🧢</code><span>false</span><small>False</small></div><div class="token-row"><code>👻</code><span>null</span><small>Empty value</small></div><div class="token-row"><code>💬 … 🤫</code><span>" … "</span><small>A piece of text</small></div></div></div>
+        <div class="docs-card"><h3>Operations</h3><div class="token-table"><div class="token-row"><code>➕</code><span>+</span><small>Addition, and joining two texts</small></div><div class="token-row"><code>➖</code><span>-</span><small>Subtraction</small></div><div class="token-row"><code>✖️</code><span>*</span><small>Multiplication</small></div><div class="token-row"><code>➗</code><span>/</span><small>Division</small></div><div class="token-row"><code>➡️</code><span>=</span><small>Store a value in a variable</small></div></div></div>
+        <div class="docs-card"><h3>Comparisons</h3><div class="token-table"><div class="token-row"><code>🤝</code><span>==</span><small>Equal to</small></div><div class="token-row"><code>🙅</code><span>!=</span><small>Different from</small></div><div class="token-row"><code>💪</code><span>&gt;</span><small>Greater than</small></div><div class="token-row"><code>🤏</code><span>&lt;</span><small>Less than</small></div></div></div>
+        <div class="docs-card"><h3>Structures</h3><div class="token-table"><div class="token-row"><code>🤔</code><span>if</span><small>If the condition is true</small></div><div class="token-row"><code>🙃</code><span>else</span><small>Otherwise</small></div><div class="token-row"><code>🔁</code><span>while</span><small>As long as the condition is true</small></div><div class="token-row"><code>🔓 … 🔒</code><span>{ … }</span><small>Start and end of a block</small></div><div class="token-row"><code>🌜 … 🌛</code><span>( … )</span><small>Parentheses</small></div><div class="token-row"><code>📤 … 📥</code><span>[ … ]</span><small>Brackets</small></div></div></div>
+        <div class="docs-card"><h3>Built-in functions</h3><div class="token-table"><div class="token-row"><code>🗣️</code><span>print(…)</span><small>Display a result</small></div><div class="token-row"><code>📏</code><span>len(…)</span><small>Count the characters of a text</small></div></div></div>
+        <div class="docs-card"><h3>Punctuation</h3><div class="token-table"><div class="token-row"><code>🙏</code><span>;</span><small>End of a statement</small></div><div class="token-row"><code>👉</code><span>:</span><small>Separates the condition from its block</small></div><div class="token-row"><code>🔹</code><span>,</span><small>Separates two items</small></div></div></div>
+      </div>
+    </section>
+
+    <section class="section-shell">
+      <div class="section-heading compact">
+        <div><span class="kicker">PUTTING IT TOGETHER</span><h2>Writing your first lines.</h2></div>
+      </div>
+      <div class="sample-grid">
+        <article class="code-sample">
+          <div class="sample-head"><h3>A variable</h3><small>Output</small></div>
+          <pre><code>score➡️7️⃣🙏
+🗣️🌜score🌛🙏</code></pre>
+          <div class="sample-result"><span class="result-line">7</span></div>
+          <p class="sample-note">The arrow stores the value in the variable. The variable name is written with regular letters.</p>
+          <div class="sample-actions"><a href="/en/#s=c2NvcmXinqHvuI8377iP4oOj8J-Zjwrwn5ej77iP8J-MnHNjb3Jl8J-Mm_CfmY8">Open in the compiler →</a></div>
+        </article>
+        <article class="code-sample">
+          <div class="sample-head"><h3>A condition</h3><small>Output</small></div>
+          <pre><code>age➡️1️⃣8️⃣🙏
+🤔🌜age💪1️⃣7️⃣🌛👉🔓
+  🗣️🌜💬Access granted ✅🤫🌛🙏
+🔒🙃👉🔓
+  🗣️🌜💬Access denied ❌🤫🌛🙏
+🔒</code></pre>
+          <div class="sample-result"><span class="result-line">Access granted ✅</span></div>
+          <p class="sample-note">If the condition between the moons is true, the first block runs. Otherwise the 🙃 block does.</p>
+          <div class="sample-actions"><a href="/en/#s=YWdl4p6h77iPMe-4j-KDozjvuI_ig6Pwn5mPCvCfpJTwn4ycYWdl8J-SqjHvuI_ig6M377iP4oOj8J-Mm_CfkYnwn5STCiAg8J-Xo--4j_CfjJzwn5KsQWNjZXNzIGdyYW50ZWQg4pyF8J-kq_CfjJvwn5mPCvCflJLwn5mD8J-RifCflJMKICDwn5ej77iP8J-MnPCfkqxBY2Nlc3MgZGVuaWVkIOKdjPCfpKvwn4yb8J-Zjwrwn5SS">Open in the compiler →</a></div>
+        </article>
+        <article class="code-sample">
+          <div class="sample-head"><h3>Count from 1 to 5</h3><small>Output</small></div>
+          <pre><code>i➡️1️⃣🙏
+🔁🌜i🤏6️⃣🌛👉🔓
+  🗣️🌜i🌛🙏
+  i➡️i➕1️⃣🙏
+🔒</code></pre>
+          <div class="sample-result"><span class="result-line">1</span><span class="result-line">2</span><span class="result-line">3</span><span class="result-line">4</span><span class="result-line">5</span></div>
+          <p class="sample-note">As long as i is smaller than 6, the block runs. The last line moves the counter forward; without it the loop would never stop.</p>
+          <div class="sample-actions"><a href="/en/#s=aeKeoe-4jzHvuI_ig6Pwn5mPCvCflIHwn4ycafCfpI8277iP4oOj8J-Mm_CfkYnwn5STCiAg8J-Xo--4j_CfjJxp8J-Mm_CfmY8KICBp4p6h77iPaeKelTHvuI_ig6Pwn5mPCvCflJI">Open in the compiler →</a></div>
+        </article>
+        <article class="code-sample">
+          <div class="sample-head"><h3>The length of a text</h3><small>Output</small></div>
+          <pre><code>message➡️💬Emoji Script 🤯🤫🙏
+🗣️🌜📏🌜message🌛🌛🙏</code></pre>
+          <div class="sample-result"><span class="result-line">15</span></div>
+          <p class="sample-note">📏 counts characters. Careful: an emoji often takes two characters for the browser.</p>
+          <div class="sample-actions"><a href="/en/#s=bWVzc2FnZeKeoe-4j_CfkqxFbW9qaSBTY3JpcHQg8J-kr_CfpKvwn5mPCvCfl6PvuI_wn4yc8J-Tj_CfjJxtZXNzYWdl8J-Mm_CfjJvwn5mP">Open in the compiler →</a></div>
+        </article>
+      </div>
+      <p class="section-more"><a href="/en/examples/">See the ten examples →</a></p>
+    </section>
+
+    <section class="section-shell">
+      <div class="section-heading compact">
+        <div><span class="kicker">TROUBLESHOOTING</span><h2>The error messages, translated.</h2></div>
+      </div>
+      <div class="faq-list">
+          <details class="faq-item"><summary>Unclosed string: add 🤫 at the end of your text.</summary><p class="faq-answer">You opened a text with 💬 without closing it with 🤫. The compiler then reads the rest of the script as text.</p></details>
+          <details class="faq-item"><summary>Unknown symbol near …</summary><p class="faq-answer">A character is not part of the language. It is often a lookalike emoji, for example 🌙 instead of 🌜, or a plain digit stuck to an emoji.</p></details>
+          <details class="faq-item"><summary>Execution stopped after 2 seconds</summary><p class="faq-answer">Your 🔁 loop never ends. Check that the tested variable really changes inside the block, for example with i➡️i➕1️⃣🙏.</p></details>
+          <details class="faq-item"><summary>Forbidden identifier</summary><p class="faq-answer">Some names reserved by the browser are blocked for security reasons. Pick another variable name.</p></details>
+      </div>
+    </section>
+
+    <section class="cta-section section-shell">
+      <div>
+        <span class="kicker">YOUR TURN</span>
+        <h2>Try the syntax<br><span>in the compiler.</span></h2>
+        <p>The compiler is free, accountless and runs entirely in your browser.</p>
+      </div>
+      <a class="btn btn-primary" href="/en/#compiler">Open the compiler 🚀</a>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="/en/"><span class="brand-mark" aria-hidden="true">🤯</span><span>Emoji<span>Script</span></span></a>
+    <p>Code with emojis, directly in your browser.</p>
+    <span>© <span id="year">2026</span> Emoji Script · <a class="footer-link" href="/en/syntax/">Syntax</a> · <a class="footer-link" href="/en/examples/">Examples</a> · <a class="footer-link" href="/en/extension-chrome/">Chrome extension</a> · <a class="footer-link" href="/en/privacy.html">Privacy</a> · <a class="footer-lang" href="/syntaxe/" hreflang="fr" lang="fr">Français</a></span>
+  </footer>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
