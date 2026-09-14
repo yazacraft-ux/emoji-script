@@ -2,29 +2,65 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>Politique de confidentialité — Emoji Script</title>
   <meta name="description" content="Politique de confidentialité de l’extension Chrome Emoji Script. Aucune donnée personnelle n’est collectée, vendue ou transmise.">
+  <meta name="theme-color" content="#09090d">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://emoji-script.com/privacy.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/styles.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Emoji Script">
+  <meta property="og:locale" content="fr_FR">
   <meta property="og:title" content="Politique de confidentialité — Emoji Script">
   <meta property="og:description" content="L’extension Chrome Emoji Script ne collecte, ne vend et ne transmet aucune donnée personnelle.">
   <meta property="og:url" content="https://emoji-script.com/privacy.html">
-  <meta property="og:type" content="website">
   <meta property="og:image" content="https://emoji-script.com/og-image-fr.png">
-  <style>
-    :root{color-scheme:dark;--bg:#07080c;--panel:#111219;--text:#f7f7f8;--muted:#a7a9b2;--yellow:#ffd437;--line:#242630}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#19170b 0,transparent 34%),var(--bg);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);line-height:1.65}
-    .wrap{max-width:880px;margin:auto;padding:32px 22px 72px}.brand{display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800}.mark{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--yellow);color:#111}
-    main{margin-top:56px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:24px;padding:42px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--yellow)}h1{font-size:clamp(34px,7vw,56px);line-height:1.02;margin:12px 0 18px;letter-spacing:-.04em}h2{font-size:22px;margin-top:34px}p,li{color:var(--muted)}strong{color:#fff}a{color:var(--yellow)}.note{margin-top:32px;padding:18px;border-radius:14px;background:#0d0e13;border:1px solid var(--line)}footer{padding-top:28px;color:#777;font-size:13px}@media(max-width:600px){main{padding:28px 22px;margin-top:36px}}
-  </style>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Politique de confidentialité — Emoji Script">
+  <meta name="twitter:description" content="L’extension Chrome Emoji Script ne collecte, ne vend et ne transmet aucune donnée personnelle.">
+  <meta name="twitter:image" content="https://emoji-script.com/og-image-fr.png">
 </head>
 <body>
-  <div class="wrap">
-    <a class="brand" href="https://emoji-script.com/"><span class="mark">🤯</span><span>Emoji Script</span></a>
-    <main>
-      <div class="eyebrow">CONFIDENTIALITÉ</div>
-      <h1>Politique de confidentialité</h1>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Emoji Script - Accueil">
+      <span class="brand-mark" aria-hidden="true">🤯</span>
+      <span>Emoji<span>Script</span></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Navigation principale">
+      <a href="/#compiler">Compilateur</a>
+      <a href="/#documentation">Documentation</a>
+      <a href="/#examples">Exemples</a>
+    </nav>
+    <div class="header-tools">
+      <a class="header-secondary" href="/extension-chrome/">Extension Chrome</a>
+      <a class="lang-switch desktop-lang" href="/en/" hreflang="en" lang="en" aria-label="English version">EN</a>
+      <a class="header-cta" href="/#compiler">Coder maintenant <span aria-hidden="true">→</span></a>
+    </div>
+    <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <a href="/#compiler">Compilateur</a>
+      <a href="/#documentation">Documentation</a>
+      <a href="/#examples">Exemples</a>
+      <a href="/extension-chrome/">Extension Chrome</a>
+      <a href="/en/" hreflang="en" lang="en">🇬🇧 English</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="page-shell">
+      <span class="kicker">CONFIDENTIALITÉ</span>
+      <h1 class="page-title">Politique de confidentialité</h1>
+    </div>
+
+    <article class="legal-card">
       <p><strong>Dernière mise à jour : 13 septembre 2026</strong></p>
 
       <h2>Aucune collecte de données personnelles</h2>
@@ -45,9 +81,16 @@
       <h2>Contact</h2>
       <p>Pour toute question concernant l’extension ou cette politique de confidentialité, tu peux passer par le site officiel Emoji Script.</p>
 
-      <div class="note">Cette politique concerne l’extension Chrome <strong>Emoji Script — Coder avec des emojis</strong>.</div>
-    </main>
-    <footer>© 2026 Emoji Script</footer>
-  </div>
+      <div class="legal-note">Cette politique concerne l’extension Chrome <strong>Emoji Script — Coder avec des emojis</strong>.</div>
+    </article>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true">🤯</span><span>Emoji<span>Script</span></span></a>
+    <p>Coder avec des emojis, directement dans le navigateur.</p>
+    <span>© <span id="year">2026</span> Emoji Script · <a class="footer-link" href="/extension-chrome/">Extension Chrome</a> · <a class="footer-lang" href="/en/" hreflang="en" lang="en">English</a></span>
+  </footer>
+
+  <script src="/app.js" defer></script>
 </body>
 </html>

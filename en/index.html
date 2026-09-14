@@ -76,24 +76,28 @@
       <a href="#documentation">Documentation</a>
       <a href="#examples">Examples</a>
     </nav>
-    <a class="lang-switch desktop-lang" href="/" hreflang="fr" lang="fr" aria-label="Version française">FR</a>
-    <a class="header-cta" href="#compiler">Start coding <span>→</span></a>
-    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
-    <div class="mobile-menu" hidden>
+    <div class="header-tools">
+      <a class="header-secondary" href="/en/extension-chrome/">Chrome extension</a>
+      <a class="lang-switch desktop-lang" href="/" hreflang="fr" lang="fr" aria-label="Version française">FR</a>
+      <a class="header-cta" href="#compiler">Start coding <span aria-hidden="true">→</span></a>
+    </div>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+    <div class="mobile-menu" id="mobileMenu" hidden>
       <a href="#compiler">Compiler</a>
       <a href="#documentation">Documentation</a>
       <a href="#examples">Examples</a>
+      <a href="/en/extension-chrome/">Chrome extension</a>
       <a href="/" hreflang="fr" lang="fr">🇫🇷 Français</a>
     </div>
   </header>
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="eyebrow"><span class="status-dot"></span> 100% in-browser · no install</div>
+      <div class="eyebrow"><span class="status-dot" aria-hidden="true"></span> 100% in-browser · no install</div>
       <h1 id="hero-title">Code with <span>emojis.</span></h1>
       <p class="hero-copy">Emoji Script turns symbols like <strong>🤔 🔁 🗣️ 💯</strong> into real syntax. Write, copy, paste and run emoji code instantly in your browser.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#compiler">Try Emoji Script <span>⚡</span></a>
+        <a class="btn btn-primary" href="#compiler">Try Emoji Script <span aria-hidden="true">⚡</span></a>
         <a class="btn btn-secondary" href="#documentation">View syntax</a>
       </div>
       <div class="hero-code" aria-label="Emoji Script code example">
@@ -118,14 +122,14 @@
       <div class="playground">
         <article class="panel editor-panel">
           <div class="panel-head">
-            <div><span class="panel-icon">✍️</span><strong>Code</strong><small>main.emoji</small></div>
+            <div><span class="panel-icon" aria-hidden="true">✍️</span><strong>Code</strong><small>main.emoji</small></div>
             <div class="panel-actions">
               <button type="button" id="copyBtn">Copy</button>
               <button type="button" id="clearBtn">Clear</button>
             </div>
           </div>
           <label class="sr-only" for="codeInput">Emoji Script code</label>
-          <textarea id="codeInput" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="compilerHelp">🗣️🌜💬Hello from Emoji Script 👋🤫🌛🙏
+          <textarea id="codeInput" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-describedby="compilerHelp">🗣️🌜💬Hello from Emoji Script 👋🤫🌛🙏
 
 score➡️3️⃣🙏
 🤔🌜score💪2️⃣🌛👉🔓
@@ -141,7 +145,7 @@ score➡️3️⃣🙏
 
         <article class="panel output-panel">
           <div class="panel-head">
-            <div><span class="panel-icon">🖥️</span><strong>Output</strong><small id="runStatus">ready</small></div>
+            <div><span class="panel-icon" aria-hidden="true">🖥️</span><strong>Output</strong><small id="runStatus">ready</small></div>
             <button type="button" id="clearOutputBtn">Clear</button>
           </div>
           <div id="output" class="output" role="log" aria-live="polite"><span class="muted">// Your script output will appear here.</span></div>
@@ -154,10 +158,10 @@ score➡️3️⃣🙏
         <div><span class="kicker">EXAMPLES</span><h2 id="examples-title">Copy, paste, run.</h2></div>
       </div>
       <div class="example-grid">
-        <button class="example-card" data-example="hello" type="button"><span>👋</span><strong>Hello World</strong><small>The classic, emoji edition</small></button>
-        <button class="example-card" data-example="condition" type="button"><span>🤔</span><strong>Condition</strong><small>Try an if / else</small></button>
-        <button class="example-card" data-example="loop" type="button"><span>🔁</span><strong>Loop</strong><small>Count from 1 to 5</small></button>
-        <button class="example-card" data-example="length" type="button"><span>📏</span><strong>Length</strong><small>Use len(...)</small></button>
+        <button class="example-card" data-example="hello" type="button"><span aria-hidden="true">👋</span><strong>Hello World</strong><small>The classic, emoji edition</small></button>
+        <button class="example-card" data-example="condition" type="button"><span aria-hidden="true">🤔</span><strong>Condition</strong><small>Try an if / else</small></button>
+        <button class="example-card" data-example="loop" type="button"><span aria-hidden="true">🔁</span><strong>Loop</strong><small>Count from 1 to 5</small></button>
+        <button class="example-card" data-example="length" type="button"><span aria-hidden="true">📏</span><strong>Length</strong><small>Use len(...)</small></button>
       </div>
     </section>
 
@@ -170,7 +174,7 @@ score➡️3️⃣🙏
       <div class="docs-layout">
         <div class="docs-card">
           <h3>Emoji → code equivalents</h3>
-          <div class="token-table" role="table" aria-label="Emoji Script syntax">
+          <div class="token-table">
             <div class="token-row"><code>🔓 &nbsp; 🔒</code><span>{ &nbsp; }</span><small>Block</small></div>
             <div class="token-row"><code>📤 &nbsp; 📥</code><span>[ &nbsp; ]</span><small>List</small></div>
             <div class="token-row"><code>🗣️</code><span>print(...)</span><small>Print</small></div>
@@ -190,13 +194,13 @@ score➡️3️⃣🙏
 
         <div class="grammar-stack">
           <article class="grammar-card">
-            <div class="grammar-title"><span>🔁</span><h3>While loop</h3></div>
+            <div class="grammar-title"><span aria-hidden="true">🔁</span><h3>While loop</h3></div>
             <pre><code>🔁🌜comparison🌛👉🔓
   ...
 🔒</code></pre>
           </article>
           <article class="grammar-card">
-            <div class="grammar-title"><span>🤔</span><h3>If / Else</h3></div>
+            <div class="grammar-title"><span aria-hidden="true">🤔</span><h3>If / Else</h3></div>
             <pre><code>🤔🌜comparison🌛👉🔓
   ...
 🔒🙃👉🔓
@@ -204,7 +208,7 @@ score➡️3️⃣🙏
 🔒</code></pre>
           </article>
           <article class="grammar-card note-card">
-            <div class="grammar-title"><span>💡</span><h3>Good to know</h3></div>
+            <div class="grammar-title"><span aria-hidden="true">💡</span><h3>Good to know</h3></div>
             <p>Variable names still use regular letters. Example: <code>score➡️5️⃣🙏</code>.</p>
           </article>
         </div>
@@ -222,9 +226,9 @@ score➡️3️⃣🙏
   </main>
 
   <footer>
-    <a class="brand footer-brand" href="#top"><span class="brand-mark">🤯</span><span>Emoji<span>Script</span></span></a>
+    <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">🤯</span><span>Emoji<span>Script</span></span></a>
     <p>Code with emojis, directly in your browser.</p>
-    <span>© <span id="year"></span> Emoji Script · <a class="footer-lang" href="/" hreflang="fr" lang="fr">Français</a></span>
+    <span>© <span id="year">2026</span> Emoji Script · <a class="footer-link" href="/en/extension-chrome/">Chrome extension</a> · <a class="footer-lang" href="/" hreflang="fr" lang="fr">Français</a></span>
   </footer>
 
   <script src="/app.js" defer></script>

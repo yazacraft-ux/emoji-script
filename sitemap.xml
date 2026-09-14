@@ -37,4 +37,10 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://emoji-script.com/en/extension-chrome/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://emoji-script.com/extension-chrome/" />
   </url>
+  <url>
+    <loc>https://emoji-script.com/privacy.html</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

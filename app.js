@@ -1,231 +1,363 @@
-const codeInput = document.getElementById('codeInput');
-const output = document.getElementById('output');
-const runBtn = document.getElementById('runBtn');
-const runStatus = document.getElementById('runStatus');
-const copyBtn = document.getElementById('copyBtn');
-const clearBtn = document.getElementById('clearBtn');
-const clearOutputBtn = document.getElementById('clearOutputBtn');
-const isEnglish = document.documentElement.lang.toLowerCase().startsWith('en');
+/* ==========================================================================
+   Emoji Script — script partagé par toutes les pages
+   - Menu mobile + année du footer : actifs partout
+   - Compilateur : activé uniquement sur les pages qui le contiennent
+   ========================================================================== */
+(function () {
+  'use strict';
 
-const i18n = isEnglish ? {
-  copied:'Copied ✓', copy:'Copy', running:'running…', error:'error', done:'done', timeout:'timeout', ready:'ready',
-  empty:'Script finished with no output.', cleared:'// Output cleared.',
-  timeoutText:'Execution stopped after 2 seconds (loop running too long?).', unknown:'Unknown error.',
-  unclosed:'Unclosed string: add 🤫 at the end of your text.', forbidden:'Forbidden identifier', symbol:'Unknown symbol near'
-} : {
-  copied:'Copié ✓', copy:'Copier', running:'exécution…', error:'erreur', done:'terminé', timeout:'timeout', ready:'prêt',
-  empty:'Script terminé sans sortie.', cleared:'// Sortie vidée.',
-  timeoutText:'Exécution stoppée après 2 secondes (boucle trop longue ?).', unknown:'Erreur inconnue.',
-  unclosed:'Texte non fermé : ajoute 🤫 à la fin de ta chaîne.', forbidden:'Identifiant interdit', symbol:'Symbole inconnu près de'
-};
+  var isEnglish = (document.documentElement.lang || '').toLowerCase().indexOf('en') === 0;
 
-const examples = isEnglish ? {
-  hello: `🗣️🌜💬Hello, world! 👋🤫🌛🙏`,
-  condition: `age➡️1️⃣8️⃣🙏\n🤔🌜age💪1️⃣7️⃣🌛👉🔓\n  🗣️🌜💬Access granted ✅🤫🌛🙏\n🔒🙃👉🔓\n  🗣️🌜💬Access denied ❌🤫🌛🙏\n🔒`,
-  loop: `i➡️1️⃣🙏\n🔁🌜i🤏6️⃣🌛👉🔓\n  🗣️🌜i🌛🙏\n  i➡️i➕1️⃣🙏\n🔒`,
-  length: `message➡️💬Emoji Script 🤯🤫🙏\n🗣️🌜📏🌜message🌛🌛🙏`
-} : {
-  hello: `🗣️🌜💬Hello, world! 👋🤫🌛🙏`,
-  condition: `age➡️1️⃣8️⃣🙏\n🤔🌜age💪1️⃣7️⃣🌛👉🔓\n  🗣️🌜💬Accès autorisé ✅🤫🌛🙏\n🔒🙃👉🔓\n  🗣️🌜💬Accès refusé ❌🤫🌛🙏\n🔒`,
-  loop: `i➡️1️⃣🙏\n🔁🌜i🤏6️⃣🌛👉🔓\n  🗣️🌜i🌛🙏\n  i➡️i➕1️⃣🙏\n🔒`,
-  length: `message➡️💬Emoji Script 🤯🤫🙏\n🗣️🌜📏🌜message🌛🌛🙏`
-};
+  var i18n = isEnglish ? {
+    copied: 'Copied ✓', copy: 'Copy', running: 'running…', error: 'error', done: 'done', timeout: 'timeout', ready: 'ready',
+    empty: 'Script finished with no output.', cleared: '// Output cleared.',
+    timeoutText: 'Execution stopped after 2 seconds (loop running too long?).', unknown: 'Unknown error.',
+    unclosed: 'Unclosed string: add 🤫 at the end of your text.', forbidden: 'Forbidden identifier', symbol: 'Unknown symbol near',
+    tooMany: 'Output stopped: too many lines displayed.', noWorker: 'Your browser blocked the execution sandbox.'
+  } : {
+    copied: 'Copié ✓', copy: 'Copier', running: 'exécution…', error: 'erreur', done: 'terminé', timeout: 'timeout', ready: 'prêt',
+    empty: 'Script terminé sans sortie.', cleared: '// Sortie vidée.',
+    timeoutText: 'Exécution stoppée après 2 secondes (boucle trop longue ?).', unknown: 'Erreur inconnue.',
+    unclosed: 'Texte non fermé : ajoute 🤫 à la fin de ta chaîne.', forbidden: 'Identifiant interdit', symbol: 'Symbole inconnu près de',
+    tooMany: 'Affichage stoppé : trop de lignes générées.', noWorker: 'Ton navigateur a bloqué le bac à sable d’exécution.'
+  };
 
-const tokens = [
-  ['✖️','*'], ['🗣️','print'], ['📏','len'], ['🔓','{'], ['🔒','}'], ['📤','['], ['📥',']'],
-  ['➕','+'], ['➖','-'], ['➗','/'], ['🙏',';'], ['💯','true'], ['🧢','false'], ['➡️','='],
-  ['🤝','=='], ['🙅','!='], ['💪','>'], ['🤏','<'], ['🌜','('], ['🌛',')'], ['👻','null'],
-  ['🔁','while'], ['🤔','if'], ['🙃','else'], ['🔹',','], ['👉',''], ['0️⃣','0'], ['1️⃣','1'],
-  ['2️⃣','2'], ['3️⃣','3'], ['4️⃣','4'], ['5️⃣','5'], ['6️⃣','6'], ['7️⃣','7'], ['8️⃣','8'], ['9️⃣','9'], ['⏺️','.']
-].sort((a,b) => b[0].length - a[0].length);
+  /* ---------------------------------------------------------------- Menu */
+  var menuToggle = document.querySelector('.menu-toggle');
+  var mobileMenu = document.querySelector('.mobile-menu');
 
-const blockedIdentifiers = new Set([
-  'fetch','importScripts','postMessage','self','globalThis','Function','eval','XMLHttpRequest','WebSocket',
-  'Worker','SharedWorker','navigator','location','document','window','parent','top','constructor','prototype','__proto__'
-]);
+  function closeMenu() {
+    if (!menuToggle || !mobileMenu) return;
+    mobileMenu.hidden = true;
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.textContent = '☰';
+  }
 
-function compileEmoji(source) {
-  let i = 0;
-  let js = '';
-  while (i < source.length) {
-    if (/\s/.test(source[i])) {
-      js += source[i++];
-      continue;
-    }
-
-    if (source.startsWith('💬', i)) {
-      const end = source.indexOf('🤫', i + '💬'.length);
-      if (end === -1) throw new Error(i18n.unclosed);
-      const content = source.slice(i + '💬'.length, end);
-      js += JSON.stringify(content);
-      i = end + '🤫'.length;
-      continue;
-    }
-
-    let matched = false;
-    for (const [emoji, replacement] of tokens) {
-      if (source.startsWith(emoji, i)) {
-        js += replacement;
-        i += emoji.length;
-        matched = true;
-        break;
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function () {
+      var open = menuToggle.getAttribute('aria-expanded') === 'true';
+      if (open) {
+        closeMenu();
+      } else {
+        mobileMenu.hidden = false;
+        menuToggle.setAttribute('aria-expanded', 'true');
+        menuToggle.textContent = '✕';
       }
-    }
-    if (matched) continue;
+    });
 
-    const rest = source.slice(i);
-    const identifier = rest.match(/^[A-Za-z_][A-Za-z0-9_]*/);
-    if (identifier) {
-      const word = identifier[0];
-      if (blockedIdentifiers.has(word)) throw new Error(`${i18n.forbidden} : ${word}`);
-      js += word;
-      i += word.length;
-      continue;
-    }
+    Array.prototype.forEach.call(mobileMenu.querySelectorAll('a'), function (link) {
+      link.addEventListener('click', closeMenu);
+    });
 
-    throw new Error(`${i18n.symbol} « ${source.slice(i, i + 8)} »`);
-  }
-  return js;
-}
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeMenu();
+    });
 
-function setStatus(text, className='') {
-  runStatus.textContent = text;
-  runStatus.className = className;
-}
-
-function appendLine(text, type='normal') {
-  if (output.querySelector('.muted')) output.innerHTML = '';
-  const line = document.createElement('span');
-  line.className = type === 'error' ? 'output-line output-error' : 'output-line';
-  line.textContent = String(text);
-  output.appendChild(line);
-  output.scrollTop = output.scrollHeight;
-}
-
-function runCode() {
-  output.innerHTML = '';
-  setStatus(i18n.running, 'running');
-  runBtn.disabled = true;
-
-  let compiled;
-  try {
-    compiled = compileEmoji(codeInput.value);
-  } catch (err) {
-    appendLine(err.message, 'error');
-    setStatus(i18n.error, 'error');
-    runBtn.disabled = false;
-    return;
+    document.addEventListener('click', function (event) {
+      if (mobileMenu.hidden) return;
+      if (mobileMenu.contains(event.target) || menuToggle.contains(event.target)) return;
+      closeMenu();
+    });
   }
 
-  const workerSource = `
-    const print = (...args) => postMessage({type:'out', value: args.map(v => typeof v === 'object' ? JSON.stringify(v) : String(v)).join(' ')});
-    const len = (value) => value != null && typeof value.length === 'number' ? value.length : 0;
+  var yearNode = document.getElementById('year');
+  if (yearNode) yearNode.textContent = String(new Date().getFullYear());
+
+  /* --------------------------------------------------------- Compilateur */
+  var codeInput = document.getElementById('codeInput');
+  var output = document.getElementById('output');
+  var runBtn = document.getElementById('runBtn');
+  if (!codeInput || !output || !runBtn) return;
+
+  var runStatus = document.getElementById('runStatus');
+  var copyBtn = document.getElementById('copyBtn');
+  var clearBtn = document.getElementById('clearBtn');
+  var clearOutputBtn = document.getElementById('clearOutputBtn');
+
+  var examples = {
+    hello: '🗣️🌜💬Hello, world! 👋🤫🌛🙏',
+    condition: isEnglish
+      ? 'age➡️1️⃣8️⃣🙏\n🤔🌜age💪1️⃣7️⃣🌛👉🔓\n  🗣️🌜💬Access granted ✅🤫🌛🙏\n🔒🙃👉🔓\n  🗣️🌜💬Access denied ❌🤫🌛🙏\n🔒'
+      : 'age➡️1️⃣8️⃣🙏\n🤔🌜age💪1️⃣7️⃣🌛👉🔓\n  🗣️🌜💬Accès autorisé ✅🤫🌛🙏\n🔒🙃👉🔓\n  🗣️🌜💬Accès refusé ❌🤫🌛🙏\n🔒',
+    loop: 'i➡️1️⃣🙏\n🔁🌜i🤏6️⃣🌛👉🔓\n  🗣️🌜i🌛🙏\n  i➡️i➕1️⃣🙏\n🔒',
+    length: 'message➡️💬Emoji Script 🤯🤫🙏\n🗣️🌜📏🌜message🌛🌛🙏'
+  };
+
+  var tokens = [
+    ['✖️', '*'], ['🗣️', 'print'], ['📏', 'len'], ['🔓', '{'], ['🔒', '}'], ['📤', '['], ['📥', ']'],
+    ['➕', '+'], ['➖', '-'], ['➗', '/'], ['🙏', ';'], ['💯', 'true'], ['🧢', 'false'], ['➡️', '='],
+    ['🤝', '=='], ['🙅', '!='], ['💪', '>'], ['🤏', '<'], ['🌜', '('], ['🌛', ')'], ['👻', 'null'],
+    ['🔁', 'while'], ['🤔', 'if'], ['🙃', 'else'], ['🔹', ','], ['👉', ''], ['0️⃣', '0'], ['1️⃣', '1'],
+    ['2️⃣', '2'], ['3️⃣', '3'], ['4️⃣', '4'], ['5️⃣', '5'], ['6️⃣', '6'], ['7️⃣', '7'], ['8️⃣', '8'],
+    ['9️⃣', '9'], ['⏺️', '.']
+  ].sort(function (a, b) { return b[0].length - a[0].length; });
+
+  var blockedIdentifiers = {};
+  ['fetch', 'importScripts', 'postMessage', 'addEventListener', 'self', 'globalThis', 'Function', 'eval',
+    'XMLHttpRequest', 'WebSocket', 'EventSource', 'Worker', 'SharedWorker', 'navigator', 'location',
+    'document', 'window', 'parent', 'top', 'constructor', 'prototype', '__proto__', 'caches',
+    'indexedDB', 'Blob', 'URL', 'atob', 'btoa', 'setTimeout', 'setInterval', 'Reflect', 'Proxy', 'import'
+  ].forEach(function (word) { blockedIdentifiers[word] = true; });
+
+  function compileEmoji(source) {
+    var i = 0;
+    var js = '';
+
+    while (i < source.length) {
+      var char = source.charAt(i);
+
+      // espaces et retours à la ligne conservés tels quels
+      if (/\s/.test(char)) { js += char; i += 1; continue; }
+
+      // chaîne de texte : 💬 ... 🤫
+      if (source.indexOf('💬', i) === i) {
+        var end = source.indexOf('🤫', i + '💬'.length);
+        if (end === -1) throw new Error(i18n.unclosed);
+        js += JSON.stringify(source.slice(i + '💬'.length, end));
+        i = end + '🤫'.length;
+        continue;
+      }
+
+      // symboles du langage
+      var matched = false;
+      for (var t = 0; t < tokens.length; t += 1) {
+        var emoji = tokens[t][0];
+        if (source.indexOf(emoji, i) === i) {
+          js += tokens[t][1];
+          i += emoji.length;
+          matched = true;
+          break;
+        }
+      }
+      if (matched) continue;
+
+      // chiffres classiques acceptés aussi (5 équivaut à 5️⃣)
+      var digits = source.slice(i).match(/^[0-9]+/);
+      if (digits) { js += digits[0]; i += digits[0].length; continue; }
+
+      // noms de variables
+      var identifier = source.slice(i).match(/^[A-Za-z_][A-Za-z0-9_]*/);
+      if (identifier) {
+        var word = identifier[0];
+        if (blockedIdentifiers[word] === true) throw new Error(i18n.forbidden + ' : ' + word);
+        js += word;
+        i += word.length;
+        continue;
+      }
+
+      throw new Error(i18n.symbol + ' « ' + source.slice(i, i + 8) + ' »');
+    }
+
+    return js;
+  }
+
+  function setStatus(text, className) {
+    if (!runStatus) return;
+    runStatus.textContent = text;
+    runStatus.className = className || '';
+  }
+
+  var MAX_LINES = 400;
+  var printedLines = 0;
+  var pending = [];
+  var flushScheduled = false;
+
+  function flush() {
+    flushScheduled = false;
+    if (!pending.length) return;
+
+    var placeholder = output.querySelector('.muted');
+    if (placeholder) output.innerHTML = '';
+
+    var fragment = document.createDocumentFragment();
+    pending.forEach(function (item) {
+      var line = document.createElement('span');
+      line.className = item.type === 'error' ? 'output-line output-error' : 'output-line';
+      line.textContent = String(item.text);
+      fragment.appendChild(line);
+    });
+    pending = [];
+    output.appendChild(fragment);
+    output.scrollTop = output.scrollHeight;
+  }
+
+  function appendLine(text, type) {
+    pending.push({ text: text, type: type });
+    if (!flushScheduled) {
+      flushScheduled = true;
+      (window.requestAnimationFrame || window.setTimeout)(flush, 16);
+    }
+  }
+
+  function buildWorkerSource(compiled) {
+    // Concaténation volontaire (et non un template littéral) : le code compilé
+    // ne peut ainsi jamais être interprété comme une interpolation ${...}
+    return [
+      'var print = function () {',
+      '  var parts = Array.prototype.map.call(arguments, function (v) {',
+      '    return typeof v === "object" && v !== null ? JSON.stringify(v) : String(v);',
+      '  });',
+      '  postMessage({ type: "out", value: parts.join(" ") });',
+      '};',
+      'var len = function (value) {',
+      '  return value != null && typeof value.length === "number" ? value.length : 0;',
+      '};',
+      'try {',
+      compiled,
+      '  postMessage({ type: "done" });',
+      '} catch (error) {',
+      '  postMessage({ type: "error", value: error && error.message ? error.message : String(error) });',
+      '}'
+    ].join('\n');
+  }
+
+  function runCode() {
+    output.innerHTML = '';
+    pending = [];
+    printedLines = 0;
+    setStatus(i18n.running, 'running');
+    runBtn.disabled = true;
+
+    var compiled;
     try {
-      ${compiled}
-      postMessage({type:'done'});
-    } catch (error) {
-      postMessage({type:'error', value:error && error.message ? error.message : String(error)});
-    }
-  `;
-
-  const blob = new Blob([workerSource], {type:'text/javascript'});
-  const url = URL.createObjectURL(blob);
-  const worker = new Worker(url);
-  let finished = false;
-
-  const stop = () => {
-    if (finished) return;
-    finished = true;
-    worker.terminate();
-    URL.revokeObjectURL(url);
-    runBtn.disabled = false;
-  };
-
-  const timeout = setTimeout(() => {
-    appendLine(i18n.timeoutText, 'error');
-    setStatus(i18n.timeout, 'error');
-    stop();
-  }, 2000);
-
-  worker.onmessage = (event) => {
-    const data = event.data || {};
-    if (data.type === 'out') appendLine(data.value);
-    if (data.type === 'error') {
-      appendLine(data.value, 'error');
+      compiled = compileEmoji(codeInput.value);
+    } catch (err) {
+      appendLine(err.message, 'error');
       setStatus(i18n.error, 'error');
-      clearTimeout(timeout);
-      stop();
+      runBtn.disabled = false;
+      return;
     }
-    if (data.type === 'done') {
-      if (!output.children.length) appendLine(i18n.empty);
-      setStatus(i18n.done, 'success');
-      clearTimeout(timeout);
-      stop();
+
+    var url;
+    var worker;
+    try {
+      url = URL.createObjectURL(new Blob([buildWorkerSource(compiled)], { type: 'text/javascript' }));
+      worker = new Worker(url);
+    } catch (err) {
+      if (url) URL.revokeObjectURL(url);
+      appendLine(i18n.noWorker, 'error');
+      setStatus(i18n.error, 'error');
+      runBtn.disabled = false;
+      return;
     }
-  };
 
-  worker.onerror = (event) => {
-    appendLine(event.message || i18n.unknown, 'error');
-    setStatus(i18n.error, 'error');
-    clearTimeout(timeout);
-    stop();
-  };
-}
+    var finished = false;
+    var timeout;
 
-runBtn.addEventListener('click', runCode);
-codeInput.addEventListener('keydown', (event) => {
-  if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
-    event.preventDefault();
-    runCode();
+    function stop() {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timeout);
+      worker.terminate();
+      URL.revokeObjectURL(url);
+      runBtn.disabled = false;
+      flush();
+    }
+
+    timeout = setTimeout(function () {
+      appendLine(i18n.timeoutText, 'error');
+      setStatus(i18n.timeout, 'error');
+      stop();
+    }, 2000);
+
+    worker.onmessage = function (event) {
+      var data = event.data || {};
+
+      if (data.type === 'out') {
+        printedLines += 1;
+        if (printedLines <= MAX_LINES) {
+          appendLine(data.value);
+        } else if (printedLines === MAX_LINES + 1) {
+          appendLine(i18n.tooMany, 'error');
+          setStatus(i18n.error, 'error');
+          stop();
+        }
+        return;
+      }
+
+      if (data.type === 'error') {
+        appendLine(data.value, 'error');
+        setStatus(i18n.error, 'error');
+        stop();
+        return;
+      }
+
+      if (data.type === 'done') {
+        if (!printedLines) appendLine(i18n.empty);
+        setStatus(i18n.done, 'success');
+        stop();
+      }
+    };
+
+    worker.onerror = function (event) {
+      if (event && event.preventDefault) event.preventDefault();
+      appendLine((event && event.message) || i18n.unknown, 'error');
+      setStatus(i18n.error, 'error');
+      stop();
+    };
   }
-  if (event.key === 'Tab') {
-    event.preventDefault();
-    const start = codeInput.selectionStart;
-    codeInput.setRangeText('  ', start, codeInput.selectionEnd, 'end');
-  }
-});
 
-copyBtn.addEventListener('click', async () => {
-  try {
-    await navigator.clipboard.writeText(codeInput.value);
-    copyBtn.textContent = i18n.copied;
-    setTimeout(() => copyBtn.textContent = i18n.copy, 1200);
-  } catch {
-    codeInput.select();
-    document.execCommand('copy');
-  }
-});
+  runBtn.addEventListener('click', runCode);
 
-clearBtn.addEventListener('click', () => {
-  codeInput.value = '';
-  codeInput.focus();
-});
-
-clearOutputBtn.addEventListener('click', () => {
-  output.innerHTML = `<span class="muted">${i18n.cleared}</span>`;
-  setStatus(i18n.ready);
-});
-
-document.querySelectorAll('[data-example]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    codeInput.value = examples[btn.dataset.example] || '';
-    document.getElementById('compiler').scrollIntoView({behavior:'smooth', block:'start'});
-    setTimeout(runCode, 350);
+  codeInput.addEventListener('keydown', function (event) {
+    if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+      event.preventDefault();
+      runCode();
+      return;
+    }
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      var start = codeInput.selectionStart;
+      codeInput.setRangeText('  ', start, codeInput.selectionEnd, 'end');
+    }
   });
-});
 
-const menuToggle = document.querySelector('.menu-toggle');
-const mobileMenu = document.querySelector('.mobile-menu');
-menuToggle.addEventListener('click', () => {
-  const open = menuToggle.getAttribute('aria-expanded') === 'true';
-  menuToggle.setAttribute('aria-expanded', String(!open));
-  menuToggle.textContent = open ? '☰' : '✕';
-  mobileMenu.hidden = open;
-});
-mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  mobileMenu.hidden = true;
-  menuToggle.setAttribute('aria-expanded','false');
-  menuToggle.textContent = '☰';
-}));
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+      var restore = function () {
+        copyBtn.textContent = i18n.copied;
+        setTimeout(function () { copyBtn.textContent = i18n.copy; }, 1200);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(codeInput.value).then(restore, function () {
+          codeInput.select();
+          document.execCommand('copy');
+          restore();
+        });
+      } else {
+        codeInput.select();
+        document.execCommand('copy');
+        restore();
+      }
+    });
+  }
 
-document.getElementById('year').textContent = new Date().getFullYear();
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function () {
+      codeInput.value = '';
+      codeInput.focus();
+    });
+  }
+
+  if (clearOutputBtn) {
+    clearOutputBtn.addEventListener('click', function () {
+      pending = [];
+      printedLines = 0;
+      output.innerHTML = '';
+      var placeholder = document.createElement('span');
+      placeholder.className = 'muted';
+      placeholder.textContent = i18n.cleared;
+      output.appendChild(placeholder);
+      setStatus(i18n.ready);
+    });
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-example]'), function (btn) {
+    btn.addEventListener('click', function () {
+      codeInput.value = examples[btn.dataset.example] || '';
+      var section = document.getElementById('compiler');
+      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(runCode, 350);
+    });
+  });
+})();
