@@ -38,7 +38,7 @@ Dans `/assets/` :
 
 Dans `/extension-icons/` : `icon-16/32/48/128.png`, à mettre dans le package de l'extension Chrome et sur la fiche du Chrome Web Store pour aligner l'icône de l'extension sur celle du site. Ce dossier ne sert pas au site lui-même.
 
-Encore à placer à la racine du dépôt : `og-image-fr.png` et `og-image-en.png` (1200×630), images de partage des deux pages d'accueil.
+À la racine également : `og-image-fr.png` et `og-image-en.png` (1200×630), images de partage des deux pages d'accueil.
 
 Le dessin de l'emoji provient de Noto Color Emoji (Google), sous licence Open Font License.
 
