@@ -23,16 +23,24 @@ Site bilingue FR / EN prêt pour GitHub Pages, avec un design unique partagé pa
 - `sitemap.xml`, `robots.txt`, `site.webmanifest`, `favicon.svg`, `CNAME`, `.nojekyll`
 - `server.js` : petit serveur statique, uniquement pour un aperçu local
 
-## Dossier assets attendu
+## Icônes et assets
 
-Le dossier `/assets/` doit contenir :
+Une seule marque partout : l'emoji 🤯 sur la tuile jaune de la charte, en vectoriel (aucune dépendance à la police emoji du système, le rendu est identique sur tous les navigateurs).
 
-- `chrome-extension-store.jpg` (capture utilisée sur les pages extension)
-- `og-extension-fr.png` et `og-extension-en.png` (1200×630)
+Dans `/assets/` :
+
+- `favicon-16.png`, `favicon-32.png` : secours PNG du favicon pour les vieux navigateurs
 - `apple-touch-icon.png` (180×180)
-- `icon-192.png` et `icon-512.png`
+- `icon-192.png`, `icon-512.png` et `icon-512-maskable.png` : icônes PWA
+- `og-extension-fr.png`, `og-extension-en.png` (1200×630) : images de partage des pages extension, aussi utilisées comme visuel dans leur hero
 
-Et à la racine : `og-image-fr.png` et `og-image-en.png` (1200×630).
+À la racine : `favicon.svg` (même marque, en vectoriel).
+
+Dans `/extension-icons/` : `icon-16/32/48/128.png`, à mettre dans le package de l'extension Chrome et sur la fiche du Chrome Web Store pour aligner l'icône de l'extension sur celle du site. Ce dossier ne sert pas au site lui-même.
+
+Encore à placer à la racine du dépôt : `og-image-fr.png` et `og-image-en.png` (1200×630), images de partage des deux pages d'accueil.
+
+Le dessin de l'emoji provient de Noto Color Emoji (Google), sous licence Open Font License.
 
 ## SEO
 
