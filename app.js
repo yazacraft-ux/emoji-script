@@ -64,6 +64,17 @@
     });
   }
 
+  /* ------ défilement interne sans ancre dans l'adresse ------------------ */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-scroll]'), function (el) {
+    el.addEventListener('click', function (event) {
+      var target = document.getElementById(el.getAttribute('data-scroll'));
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      closeMenu();
+    });
+  });
+
   var yearNode = document.getElementById('year');
   if (yearNode) yearNode.textContent = String(new Date().getFullYear());
 
@@ -418,24 +429,30 @@
 
   if (shareBtn) shareBtn.addEventListener('click', shareLink);
 
-  var sharedMatch = /[#&]s=([A-Za-z0-9\-_]+)/.exec(location.hash);
-  if (sharedMatch) {
+  function loadFromHash() {
+    var match = /[#&]s=([A-Za-z0-9\-_]+)/.exec(location.hash);
+    if (!match) return;
     try {
-      var shared = decodeScript(sharedMatch[1]);
-      if (shared) {
-        codeInput.value = shared;
-        output.innerHTML = '';
-        var note = document.createElement('span');
-        note.className = 'muted';
-        note.textContent = i18n.loadedFromLink;
-        output.appendChild(note);
-        var target = document.getElementById('compiler');
-        if (target) setTimeout(function () { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120);
-      }
+      var shared = decodeScript(match[1]);
+      if (!shared) return;
+      codeInput.value = shared;
+      pending = [];
+      printedLines = 0;
+      output.innerHTML = '';
+      var note = document.createElement('span');
+      note.className = 'muted';
+      note.textContent = i18n.loadedFromLink;
+      output.appendChild(note);
+      setStatus(i18n.ready);
+      var target = document.getElementById('compiler');
+      if (target) setTimeout(function () { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120);
     } catch (err) {
-      /* lien abîmé : on garde le script par défaut */
+      /* lien abîmé : on garde le script en place */
     }
   }
+
+  loadFromHash();
+  window.addEventListener('hashchange', loadFromHash);
 
   Array.prototype.forEach.call(document.querySelectorAll('[data-example]'), function (btn) {
     btn.addEventListener('click', function () {
